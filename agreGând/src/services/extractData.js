@@ -39,18 +39,19 @@ function parseRSSFeed(sourceName, feedUrl) {
         : item.getTextContent(item, "link");
 
       const description = extractDescription(item, isAtom);
-      const image = extractImage(item, isAtom);
-      const category = extractCategory(item, isAtom);
-      const publishDate = extractDate(item, isAtom);
+      const image = extractImage(item, sourceName);
+      const categories = extractCategories(item, sourceName);
+      const publishDate = extractDate(item, sourceName);
 
       if (title && link && description) {
         articles.push({
           title: title,
           link: link,
+          source: sourceName,
           description: description,
-          image: image || null,
-          category: category || null,
-          publishDate: publishDate || null,
+          image: image,
+          categories: categories,
+          publishDate: publishDate,
         });
       }
     } catch (error) {
@@ -61,10 +62,67 @@ function parseRSSFeed(sourceName, feedUrl) {
   return articles;
 }
 
-function extractDescription(item, isAtom) {}
+function getTextContent(item, tagName) {
+  const element = item.querySelector(tagName);
+  return element ? element.textContent : "";
+}
 
-function extractImage(item, isAtom) {}
+function extractDescription(item, isAtom) {
+  if (isAtom) {
+    return getTextContent(item, "summary");
+  }
 
-function extractCategory(item, isAtom) {}
+  const descriptionContent = getTextContent(item, "description")
+    .replace(/<!\[CDATA\[|\]\]>/g, "")
+    .trim();
+  if (descriptionContent.includes("<") && descriptionContent.includes(">")) {
+    const html = new DOMParser().parseFromString(
+      descriptionContent,
+      "text/html"
+    );
+    const descriptionText = html.querySelector("p").textContent.trim();
+    return descriptionText;
+  }
+  return new DOMParser()
+    .parseFromString(descriptionContent, "text/html")
+    .body.textContent.trim();
+}
 
-function extractDate(item, isAtom) {}
+function extractImage(item, sourceName) {
+  if (sourceName === "HotNews" || sourceName === "Recorder") {
+    return "";
+  } else if (sourceName === "PressOne") {
+    const descriptionContent = getTextContent(item, "description")
+      .replace(/<!\[CDATA\[|\]\]>/g, "")
+      .trim();
+    const html = new DOMParser().parseFromString(
+      descriptionContent,
+      "text/html"
+    );
+    const firstImage = html.querySelector("img");
+    return firstImage ? firstImage.getAttribute("src") : "";
+  }
+
+  const content = item.getElementsByTagName("content:encoded")[0].textContent;
+  const html = new DOMParser().parseFromString(content, "text/html");
+  const firstImage = html.querySelector("img");
+  return firstImage ? firstImage.getAttribute("src") : "";
+}
+
+function extractCategories(item, sourceName) {
+  if (sourceName === "PressOne") {
+    return [];
+  }
+
+  const categories = [];
+  const categoryElements = item.querySelectorAll("category");
+  categoryElements.forEach((cat) => categories.push(cat.textContent.trim()));
+  return categories;
+}
+
+function extractDate(item, sourceName) {
+  if (sourceName === "PressOne") {
+    return "";
+  }
+  return getTextContent(item, "pubDate");
+}
