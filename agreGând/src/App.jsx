@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { useData } from "./services/useData.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { articles, loading, error } = useData();
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching data: {error.message}</div>;
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>agreGând</h1>
+      <ul>
+        Stiri de actualitate:
+        {articles.map((article) => {
+          return (
+            <li key={article.title + article.link}>
+              <h2>
+                <a href={article.link} target="_blank">
+                  {article.title}
+                </a>
+              </h2>
+              <br />
+              <p>Descriere: {article.description}</p>
+              {article.image && <img src={article.image} alt={article.title} />}
+              <p>Sursa: {article.source}</p>
+              <p>Data publicarii: {article.publishDate}</p>
+              {article.categories.length > 0 &&
+                article.categories.map((cat, index) => (
+                  <span key={cat + index}>| {cat} | </span>
+                ))}
+              <hr />
+            </li>
+          );
+        })}
+      </ul>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
