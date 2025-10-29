@@ -1,26 +1,3 @@
-const newsSources = {
-  hotnews: {
-    name: "HotNews",
-    feedUrl: "https://hotnews.ro/feed",
-  },
-  snoop: {
-    name: "Snoop",
-    feedUrl: "https://snoop.ro/feed",
-  },
-  declic: {
-    name: "Declic",
-    feedUrl: "https://www.declic.ro/feed",
-  },
-  pressone: {
-    name: "PressOne",
-    feedUrl: "https://pressone.ro/api/rss",
-  },
-  recorder: {
-    name: "Recorder",
-    feedUrl: "https://recorder.ro/feed",
-  },
-};
-
 function parseRSSFeed(sourceName, feedUrl) {
   const parser = new DOMParser();
   const xmlContent = parser.parseFromString(feedUrl, "text/xml");
@@ -36,7 +13,7 @@ function parseRSSFeed(sourceName, feedUrl) {
       const title = getTextContent(item, "title");
       const link = isAtom
         ? item.querySelector("link").getAttribute("href")
-        : item.getTextContent(item, "link");
+        : getTextContent(item, "link");
 
       const description = extractDescription(item, isAtom);
       const image = extractImage(item, sourceName);
@@ -126,3 +103,5 @@ function extractDate(item, sourceName) {
   }
   return getTextContent(item, "pubDate");
 }
+
+export { parseRSSFeed };
