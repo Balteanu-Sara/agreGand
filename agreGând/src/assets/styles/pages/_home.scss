@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    width: 100%;
+    background-color: blue;
+
+    .left-side {
+      background-color: aliceblue;
+
+      button {
+        border: green solid;
+      }
+    }
+
+    .right-side {
+      background-color: aliceblue;
+
+      button {
+        border: green solid;
+      }
+    }
+  }
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: aliceblue;
+
+    .slider {
+      background-color: blue;
+    }
+  }
+
+  .content {
+    padding: 20px;
+    width: auto;
+  }
+
+  .footer {
+    width: 100%;
+    background-color: blue;
+  }
+}
