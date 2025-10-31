@@ -8,9 +8,8 @@ export default function Content() {
 
   return (
     <div className="content">
-      <h1>agreGând</h1>
+      <h1>De actualitate</h1>
       <ul>
-        Stiri de actualitate:
         {articles.map((article) => {
           return (
             <li key={article.title + article.link}>
