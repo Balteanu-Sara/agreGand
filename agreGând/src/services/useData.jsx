@@ -5,6 +5,7 @@ const newsSources = {
   hotnews: { name: "HotNews", feedUrl: "https://hotnews.ro/feed" },
   snoop: { name: "Snoop", feedUrl: "https://snoop.ro/feed" },
   declic: { name: "Declic", feedUrl: "https://www.declic.ro/feed" },
+  context: { name: "Context", feedUrl: "https://context.ro/feed" },
   pressone: { name: "PressOne", feedUrl: "https://pressone.ro/feed" },
   recorder: { name: "Recorder", feedUrl: "https://recorder.ro/feed" },
 };
@@ -25,7 +26,8 @@ export function useData() {
             )}`
           );
 
-          const feedText = await response.text();
+          const blob = await response.blob();
+          const feedText = await blob.text();
           const sourceArticles = parseRSSFeed(newsSources[key].name, feedText);
           allArticles.push(...sourceArticles);
         }

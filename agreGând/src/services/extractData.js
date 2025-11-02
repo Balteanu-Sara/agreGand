@@ -66,7 +66,11 @@ function extractDescription(item, isAtom) {
 }
 
 function extractImage(item, sourceName) {
-  if (sourceName === "HotNews" || sourceName === "Recorder") {
+  if (
+    sourceName === "HotNews" ||
+    sourceName === "Recorder" ||
+    sourceName === "Context"
+  ) {
     return "";
   } else if (sourceName === "PressOne") {
     const descriptionContent = getTextContent(item, "description")
