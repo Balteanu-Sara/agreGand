@@ -1,7 +1,8 @@
-import { useData } from "../services/useData";
+import { useContext } from "react";
+import { DataContext } from "../context/DataProvider.jsx";
 
 export default function Content() {
-  const { articles, loading, error } = useData();
+  const { articles, loading, error } = useContext(DataContext);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data: {error.message}</div>;
