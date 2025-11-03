@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { DataContext } from "../context/DataProvider.jsx";
+import { Menu, Search, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Logo({ onClick }) {
   return (
@@ -33,54 +36,126 @@ function Logo({ onClick }) {
   );
 }
 
-function SearchButton({ onClick, currentToggle }) {
+function SearchButton({ onClick }) {
   return (
     <>
-      {!currentToggle ? (
-        <svg
-          data-bbox="33 33 133.358 133.358"
-          viewBox="0 0 200 200"
-          className="search"
-          xmlns="http://www.w3.org/2000/svg"
-          data-type="shape"
-        >
-          <g>
-            <path
-              d="M54.758 119.575c-8.658-8.658-13.425-20.167-13.425-32.408 0-12.234 4.767-23.742 13.425-32.4 8.659-8.659 20.167-13.434 32.409-13.434 12.241 0 23.75 4.775 32.408 13.434C128.233 63.425 133 74.933 133 87.167c0 12.241-4.767 23.75-13.425 32.408C110.917 128.233 99.408 133 87.167 133c-12.242 0-23.75-4.767-32.409-13.425Zm111.6 40.892-38.083-38.092c8.425-9.808 13.058-22.133 13.058-35.208 0-14.467-5.633-28.067-15.866-38.292C115.242 38.642 101.633 33 87.167 33 72.7 33 59.1 38.642 48.867 48.875 38.633 59.1 33 72.7 33 87.167c0 14.475 5.633 28.066 15.867 38.3C59.1 135.7 72.7 141.333 87.167 141.333c13.075 0 25.4-4.633 35.216-13.066l38.084 38.091 5.891-5.891Z"
-              fill="#FFFFFF"
-              fillRule="evenodd"
-            ></path>
-          </g>
-        </svg>
-      ) : (
-        <div className="search-overlay">
-          <p>Search content goes here</p>
-          <button onClick={onClick}>Close</button>
-        </div>
-      )}
+      <svg
+        data-bbox="33 33 133.358 133.358"
+        viewBox="0 0 200 200"
+        className="search"
+        onClick={onClick}
+        xmlns="http://www.w3.org/2000/svg"
+        data-type="shape"
+      >
+        <g>
+          <path
+            d="M54.758 119.575c-8.658-8.658-13.425-20.167-13.425-32.408 0-12.234 4.767-23.742 13.425-32.4 8.659-8.659 20.167-13.434 32.409-13.434 12.241 0 23.75 4.775 32.408 13.434C128.233 63.425 133 74.933 133 87.167c0 12.241-4.767 23.75-13.425 32.408C110.917 128.233 99.408 133 87.167 133c-12.242 0-23.75-4.767-32.409-13.425Zm111.6 40.892-38.083-38.092c8.425-9.808 13.058-22.133 13.058-35.208 0-14.467-5.633-28.067-15.866-38.292C115.242 38.642 101.633 33 87.167 33 72.7 33 59.1 38.642 48.867 48.875 38.633 59.1 33 72.7 33 87.167c0 14.475 5.633 28.066 15.867 38.3C59.1 135.7 72.7 141.333 87.167 141.333c13.075 0 25.4-4.633 35.216-13.066l38.084 38.091 5.891-5.891Z"
+            fill="#FFFFFF"
+            fillRule="evenodd"
+          ></path>
+        </g>
+      </svg>
     </>
   );
 }
 
-function NavBar({ onClick, currentToggle }) {
+function SearchArea({ onClick }) {
+  const { articles } = useContext(DataContext);
+  const [loadingFilter, setLoadingFilter] = useState(false);
+  const [filteredArticles, setFilteredArticles] = useState([...articles]);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    console.log(query);
+    if (query === "") {
+      console.log("e gol");
+      setFilteredArticles([...articles]);
+      setLoadingFilter(false);
+      return;
+    }
+    console.log("caut");
+    setLoadingFilter(true);
+    const timeout = setTimeout(() => {
+      const results = articles.filter(
+        (article) =>
+          article.title.toLowerCase().includes(query.toLowerCase()) ||
+          article.source.toLowerCase().includes(query.toLowerCase()) ||
+          article.categories.some((category) =>
+            category.toLowerCase().includes(query.toLowerCase())
+          )
+      );
+      setFilteredArticles([...results]);
+      console.log("am gasit rezultate: ", results);
+      setLoadingFilter(false);
+    }, 500);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [query, articles]);
+
   return (
-    <>
-      {!currentToggle ? (
-        <button className=".right-side" onClick={onClick}>
-          Iconita
-        </button>
-      ) : (
-        <div>
-          <ul>
-            <li>Acasă</li>
-            <li>Știri</li>
-            <li>Resurse</li>
-            <li>Despre noi</li>
-          </ul>
-          <button onClick={onClick}>Inchide</button>
-        </div>
-      )}
-    </>
+    <div className="search-area">
+      <div className="search-container">
+        <Search />
+        <input
+          type="text"
+          placeholder="Caută..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={onClick}>Închide</button>
+      </div>
+      <div className="results-area">
+        <p>Rezultate</p>
+        {loadingFilter && <div>Se încarcă...</div>}
+        {!loadingFilter && !filteredArticles.length && query && (
+          <div className="results-not-found">
+            Nu s-au găsit rezultate pentru: "{query}"
+          </div>
+        )}
+        {!loadingFilter && (
+          <div className="results-found">
+            <ul>
+              {filteredArticles.slice(0, 3).map((article) => {
+                return <li key={article.title}>{article.title}</li>;
+              })}
+            </ul>
+            <button>Vezi toate rezultatele</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function NavBar({ onClick }) {
+  return (
+    <div className="navigation-area">
+      <ul>
+        <li>
+          <Link to="/" className="menu-element">
+            Acasă
+          </Link>
+        </li>
+        <li>
+          <Link to="/news" className="menu-element">
+            Știri
+          </Link>
+        </li>
+        <li>
+          <Link to="/resources" className="menu-element">
+            Resurse
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="menu-element">
+            Despre noi
+          </Link>
+        </li>
+      </ul>
+
+      <X onClick={onClick} className="close-button" />
+    </div>
   );
 }
 
@@ -103,11 +178,13 @@ export default function Header() {
 
   return (
     <div className="header">
+      {toggleSearch && <SearchArea onClick={toggleSearchView} />}
       <div className="left-side">
         <Logo onClick={goHome} />
-        <SearchButton onClick={toggleSearchView} currentToggle={toggleSearch} />
+        <SearchButton onClick={toggleSearchView} />
       </div>
-      <NavBar onClick={toggleNavBarView} currentToggle={toggleNavBar} />
+      <Menu onClick={toggleNavBarView} className="right-side" />
+      {toggleNavBar && <NavBar onClick={toggleNavBarView} />}
     </div>
   );
 }

@@ -5,10 +5,23 @@
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     min-height: 10vh;
     padding: 20px;
     background-color: blue;
+
+    .search-area {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+    }
 
     .left-side {
       display: flex;
@@ -26,13 +39,38 @@
       }
     }
 
-    .right-side {
-      background-color: aliceblue;
-      min-height: 25px;
+    .navigation-area {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background-color: cadetblue;
 
-      button {
-        border: green solid;
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+
+        .menu-element {
+          text-decoration: none;
+          color: white;
+        }
       }
+
+      .close-button {
+        min-height: 25px;
+        color: white;
+      }
+    }
+
+    .right-side {
+      min-height: 25px;
+      color: white;
     }
   }
 
