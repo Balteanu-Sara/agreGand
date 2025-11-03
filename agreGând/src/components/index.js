@@ -1,4 +1,4 @@
 export { default as Header } from "./Header";
 export { default as Banner } from "./Banner";
-export { default as Content } from "./Content";
+export { default as HomeContent } from "./HomeContent";
 export { default as Footer } from "./Footer";

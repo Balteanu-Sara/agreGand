@@ -1,0 +1,17 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 5vh;
+  background-color: aliceblue;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: auto;
+  }
+
+  .slider {
+    background-color: blue;
+  }
+}

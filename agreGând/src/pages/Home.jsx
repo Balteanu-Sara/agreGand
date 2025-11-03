@@ -1,6 +1,6 @@
 import "../assets/styles/main.scss";
 import { useData } from "../services/useData";
-import { Header, Banner, Content, Footer } from "../components/index";
+import { Header, Banner, HomeContent, Footer } from "../components/index";
 
 function Home() {
   const { articles, loading, error } = useData();
@@ -9,10 +9,10 @@ function Home() {
   if (error) return <div>Error fetching data: {error.message}</div>;
 
   return (
-    <div className="container">
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Header />
       <Banner />
-      <Content />
+      <HomeContent />
       <Footer />
     </div>
   );
