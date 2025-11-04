@@ -1,4 +1,6 @@
 :root {
+  --albastru-inchis: #0e1c40;
+  --albastru-cer: #2a53c1;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
