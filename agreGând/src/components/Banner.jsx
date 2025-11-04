@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 
 export default function Banner({ image, text, slider }) {
   const [recentNews, setRecentNews] = useState([]);
-  const { articles } = useContext(DataContext);
+  const { articles, loading, error } = useContext(DataContext);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -42,6 +42,20 @@ export default function Banner({ image, text, slider }) {
         <div className="simple-text">
           <strong>{text}</strong>
         </div>
+        {slider && loading && (
+          <div
+            style={{
+              textAlign: "center",
+              fontSize: "16px",
+              minHeight: "8vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            Se încarcă...
+          </div>
+        )}
         {slider && recentNews.length > 0 && (
           <div className="slider">
             <a
