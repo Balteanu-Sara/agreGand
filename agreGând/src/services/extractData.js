@@ -1,3 +1,10 @@
+import context from "../assets/images/context.jpg";
+import declic from "../assets/images/declic.png";
+import hotnews from "../assets/images/hotnews.webp";
+import pressone from "../assets/images/pressone.jpg";
+import recorder from "../assets/images/recorder.jpg";
+import snoop from "../assets/images/snoop.png";
+
 function parseRSSFeed(sourceName, feedUrl) {
   const parser = new DOMParser();
   const xmlContent = parser.parseFromString(feedUrl, "text/xml");
@@ -66,13 +73,10 @@ function extractDescription(item, isAtom) {
 }
 
 function extractImage(item, sourceName) {
-  if (
-    sourceName === "HotNews" ||
-    sourceName === "Recorder" ||
-    sourceName === "Context"
-  ) {
-    return "";
-  } else if (sourceName === "PressOne") {
+  if (sourceName === "HotNews") return hotnews;
+  if (sourceName === "Context") return context;
+  if (sourceName === "Recorder") return recorder;
+  if (sourceName === "PressOne") {
     const descriptionContent = getTextContent(item, "description")
       .replace(/<!\[CDATA\[|\]\]>/g, "")
       .trim();
@@ -81,13 +85,17 @@ function extractImage(item, sourceName) {
       "text/html"
     );
     const firstImage = html.querySelector("img");
-    return firstImage ? firstImage.getAttribute("src") : "";
+    return firstImage ? firstImage.getAttribute("src") : pressone;
   }
 
   const content = item.getElementsByTagName("content:encoded")[0].textContent;
   const html = new DOMParser().parseFromString(content, "text/html");
   const firstImage = html.querySelector("img");
-  return firstImage ? firstImage.getAttribute("src") : "";
+  return firstImage
+    ? firstImage.getAttribute("src")
+    : sourceName === "Declic"
+    ? declic
+    : snoop;
 }
 
 function extractCategories(item, sourceName) {
