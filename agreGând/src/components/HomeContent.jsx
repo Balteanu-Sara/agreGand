@@ -1,50 +1,75 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataProvider.jsx";
+import { useNavigate } from "react-router-dom";
+
+function HomeArticle({ image, title, link, categories }) {
+  return (
+    <div className="home-article">
+      <div className="image-wrapper">
+        <img src={image} alt={title} />
+      </div>
+      <h1>
+        <a href={link} target="_blank">
+          {title.slice(0, 100) + "..."}
+        </a>
+      </h1>
+      <hr />
+      <div className="categories">
+        {categories
+          .map((cat, index) => <p key={cat + index}>{cat}</p>)
+          .slice(0, 3)}
+      </div>
+    </div>
+  );
+}
+
+function HomeSection({ source }) {
+  const navigate = useNavigate();
+  const { articles } = useContext(DataContext);
+  const filteredArticles = articles
+    .filter((article) => article.source === source)
+    .slice(0, 3);
+
+  function goNews() {
+    navigate(`/news/${source.toLowerCase()}`);
+  }
+
+  return (
+    <div className="content-section">
+      <h2>{source}</h2>
+      <div className="content-section-articles">
+        {filteredArticles.map((article) => {
+          return (
+            <HomeArticle
+              key={article.link}
+              image={article.image}
+              title={article.title}
+              link={article.link}
+              categories={[...article.categories]}
+            />
+          );
+        })}
+      </div>
+      <button onClick={goNews}>Vezi mai multe de la {source}</button>
+    </div>
+  );
+}
 
 export default function HomeContent() {
-  const { articles, loading, error } = useContext(DataContext);
+  const { loading, error } = useContext(DataContext);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching data: {error.message}</div>;
+  if (loading) return <div className="other-content">Se încarcă...</div>;
+  if (error)
+    return <div className="other-content">Eroare : {error.message}</div>;
 
   return (
     <div className="home-content">
-      <h1>De actualitate</h1>
-      <ul>
-        {articles
-          .map((article) => {
-            return (
-              <li key={article.title + article.link}>
-                <h2>
-                  <a href={article.link} target="_blank">
-                    {article.title}
-                  </a>
-                </h2>
-                <br />
-                <p>Descriere: {article.description}</p>
-                {article.image && (
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    style={{
-                      maxWidth: "100%",
-                      height: "auto",
-                      display: "block",
-                    }}
-                  />
-                )}
-                <p>Sursa: {article.source}</p>
-                <p>Data publicarii: {article.publishDate}</p>
-                {article.categories.length > 0 &&
-                  article.categories.map((cat, index) => (
-                    <span key={cat + index}>| {cat} | </span>
-                  ))}
-                <hr />
-              </li>
-            );
-          })
-          .slice(0, 5)}
-      </ul>
+      <HomeSection source="PressOne" />
+      <HomeSection source="Context" />
+      <HomeSection source="Snoop" />
+      <HomeSection source="HotNews" />
+      <HomeSection source="Declic" />
+      <HomeSection source="Recorder" />
     </div>
   );
 }
