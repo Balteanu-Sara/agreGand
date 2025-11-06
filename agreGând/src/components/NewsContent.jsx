@@ -87,8 +87,6 @@ export default function NewsContent() {
     setToggleOptions((prev) => !prev);
   }
 
-  console.log("filteredArticles length: ");
-
   return (
     <div className="news-content">
       <div className="fake-button">
