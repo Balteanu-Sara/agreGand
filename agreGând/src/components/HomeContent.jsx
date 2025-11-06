@@ -31,7 +31,8 @@ function HomeSection({ source }) {
     .slice(0, 3);
 
   function goNews() {
-    navigate(`/news/${source.toLowerCase()}`);
+    navigate(`/news/${source}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
