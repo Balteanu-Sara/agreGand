@@ -15,9 +15,9 @@ function HomeArticle({ image, title, link, categories }) {
       </h1>
       <hr />
       <div className="categories">
-        {categories
-          .map((cat, index) => <p key={cat + index}>{cat}</p>)
-          .slice(0, 3)}
+        {categories.slice(0, 3).map((cat, index) => (
+          <p key={cat + index}>{cat}</p>
+        ))}
       </div>
     </div>
   );
