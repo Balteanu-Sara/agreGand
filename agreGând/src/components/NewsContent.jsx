@@ -87,6 +87,8 @@ export default function NewsContent() {
     setToggleOptions((prev) => !prev);
   }
 
+  console.log("filteredArticles length: ");
+
   return (
     <div className="news-content">
       <div className="fake-button">
@@ -123,7 +125,7 @@ export default function NewsContent() {
               ))
               .slice(0, show)}
       </div>
-      {filteredArticles.slice(0, show).length !== articles.length && (
+      {filteredArticles.slice(0, show).length !== filteredArticles.length && (
         <button onClick={changeShownArticles} className="show-button">
           Arată mai mult
         </button>
