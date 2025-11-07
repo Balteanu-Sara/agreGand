@@ -35,9 +35,15 @@ export default function Footer() {
         {message && <p>{message}</p>}
       </div>
       <div className="logos">
-        <Facebook />
-        <Twitter />
-        <Instagram />
+        <a href="">
+          <Facebook />
+        </a>
+        <a href="">
+          <Twitter />
+        </a>
+        <a href="">
+          <Instagram />
+        </a>
       </div>
       <p>
         Copyright © {new Date().getFullYear()} <strong>agreGând</strong> -
