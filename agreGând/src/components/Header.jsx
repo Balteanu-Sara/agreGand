@@ -148,7 +148,7 @@ function NavBar({ onClick }) {
           </Link>
         </li>
         <li>
-          <Link to="/about" className="menu-element">
+          <Link to="/about-us" className="menu-element">
             Despre noi
           </Link>
         </li>
