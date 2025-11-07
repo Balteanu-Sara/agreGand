@@ -6,7 +6,7 @@ function Resources() {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Header />
-      <Banner image={banner} text="Resurse implicate" slider={true} />
+      <Banner image={banner} text="Resurse implicate" slider={false} />
       <ResourcesContent />
       <Footer />
     </div>
