@@ -115,11 +115,16 @@ function SearchArea({ onClick }) {
         )}
         {!loadingFilter && (
           <div className="results-found">
-            <ul>
-              {filteredArticles.slice(0, 3).map((article) => {
-                return <li key={article.title}>{article.title}</li>;
-              })}
-            </ul>
+            {filteredArticles.slice(0, 3).map((article) => {
+              return (
+                <div className="result" key={article.link}>
+                  <div className="image-wrapper">
+                    <img src={article.image} alt="poza" />
+                  </div>
+                  <div>{article.title.slice(0, 70) + "..."}</div>
+                </div>
+              );
+            })}
             <button>Vezi toate rezultatele</button>
           </div>
         )}
