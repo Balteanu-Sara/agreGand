@@ -126,7 +126,12 @@ function SearchArea({ onClick }) {
                 </div>
               );
             })}
-            <button onClick={() => navigate(`/search/${query}`)}>
+            <button
+              onClick={() => {
+                onClick();
+                navigate(`/search/${query}`);
+              }}
+            >
               Vezi toate rezultatele
             </button>
           </div>

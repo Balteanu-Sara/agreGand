@@ -12,7 +12,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/search/:query" element={<SearchResults />} />
-        <Route path="search" element={<SearchResults />} />
         <Route path="/news/:source" element={<News />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/about-us" element={<AboutUs />} />

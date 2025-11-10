@@ -1,7 +1,7 @@
 import { DataContext } from "../context/DataProvider.jsx";
 import { useState, useEffect, useContext } from "react";
 
-export default function Banner({ image, text, slider }) {
+export default function Banner({ image, text, slider, spliter = true }) {
   const [recentNews, setRecentNews] = useState([]);
   const { articles, loading, error } = useContext(DataContext);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,36 +38,38 @@ export default function Banner({ image, text, slider }) {
           <img src={image} alt="poza" />
         </div>
       )}
-      <div className="breaker">
-        <div className="simple-text">
-          <strong>{text}</strong>
-        </div>
-        {slider && loading && (
-          <div
-            style={{
-              textAlign: "center",
-              fontSize: "16px",
-              minHeight: "8vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            Se încarcă...
+      {spliter && (
+        <div className="breaker">
+          <div className="simple-text">
+            <strong>{text}</strong>
           </div>
-        )}
-        {slider && recentNews.length > 0 && (
-          <div className="slider">
-            <a
-              href={recentNews[currentIndex]?.link}
-              className="slider-link"
-              target="_blank"
+          {slider && loading && (
+            <div
+              style={{
+                textAlign: "center",
+                fontSize: "16px",
+                minHeight: "8vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              {truncateTitle(recentNews[currentIndex].title)}
-            </a>
-          </div>
-        )}
-      </div>
+              Se încarcă...
+            </div>
+          )}
+          {slider && recentNews.length > 0 && (
+            <div className="slider">
+              <a
+                href={recentNews[currentIndex]?.link}
+                className="slider-link"
+                target="_blank"
+              >
+                {truncateTitle(recentNews[currentIndex].title)}
+              </a>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
