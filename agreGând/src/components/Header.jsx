@@ -60,6 +60,7 @@ function SearchButton({ onClick }) {
 }
 
 function SearchArea({ onClick }) {
+  const navigate = useNavigate();
   const { articles } = useContext(DataContext);
   const [loadingFilter, setLoadingFilter] = useState(false);
   const [filteredArticles, setFilteredArticles] = useState([...articles]);
@@ -125,7 +126,9 @@ function SearchArea({ onClick }) {
                 </div>
               );
             })}
-            <button>Vezi toate rezultatele</button>
+            <button onClick={() => navigate(`/search/${query}`)}>
+              Vezi toate rezultatele
+            </button>
           </div>
         )}
       </div>
