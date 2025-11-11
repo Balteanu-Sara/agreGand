@@ -20,15 +20,17 @@ export default function Footer() {
 
   return (
     <div className="footer">
-      <h1>Abonează-te la noutățile noastre</h1>
+      <h1>Abonează-te la noutățile noastre!</h1>
       <div className="user-input">
         <label htmlFor="subscribe">Introdu adresa ta de email:</label>
-        <input
-          type="text"
-          name="subscribe"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <div>
+          <input
+            type="text"
+            name="subscribe"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
         <button onClick={handleClick}>
           <span>Abonează-te</span>
         </button>
