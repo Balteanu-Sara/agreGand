@@ -12,6 +12,8 @@ export default function SearchContent() {
   const [inputValue, setInputValue] = useState("");
   const [lastInput, setLastInput] = useState(query || "");
 
+  useEffect(() => setLastInput(query || ""), [query]);
+
   useEffect(() => {
     if (!lastInput) {
       setFilteredArticles([...articles]);
