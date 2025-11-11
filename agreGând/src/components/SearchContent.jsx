@@ -54,27 +54,31 @@ export default function SearchContent() {
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleEnter}
       />
-      {loading && <div>Se încarcă...</div>}
-      {!loading && lastInput && filteredArticles.length === 0 && (
-        <>
-          <p>0 rezultate pentru "{lastInput}"</p>
-          <div>Nu au fost găsite rezultate!</div>
-        </>
-      )}
-      {!loading && filteredArticles.length !== 0 && (
-        <>
-          <p>
-            {filteredArticles.length} rezultate pentru "{lastInput}"
-          </p>
-          <div>
-            {filteredArticles.map((article) => (
-              <p key={article.link}>
-                <a href={article.link}>{article.title}</a>
+      <div className="results">
+        {loading && <div className="overlay">Se încarcă...</div>}
+        <div className={`results-area ${loading ? "blurred" : ""}`}>
+          {!loading && lastInput && filteredArticles.length === 0 && (
+            <>
+              <p>0 rezultate pentru "{lastInput}"</p>
+              <div>Nu au fost găsite rezultate!</div>
+            </>
+          )}
+          {!loading && filteredArticles.length !== 0 && (
+            <>
+              <p>
+                {filteredArticles.length} rezultate pentru "{lastInput}"
               </p>
-            ))}
-          </div>
-        </>
-      )}
+              <div>
+                {filteredArticles.map((article) => (
+                  <p key={article.link}>
+                    <a href={article.link}>{article.title}</a>
+                  </p>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
