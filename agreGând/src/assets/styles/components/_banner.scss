@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: aliceblue;
 
   .titles {
     padding: 5vh 20px 25px 20px;
@@ -10,22 +9,23 @@
 
     .name {
       font-family: "Arial Black", arial-w01-black, sans-serif;
-      font-size: 55px;
+      font-size: 60px;
       margin: auto;
       letter-spacing: -2px;
     }
 
     .quote {
       font-family: "Arial Black", arial-w01-black, sans-serif;
-      font-size: 20px;
+      font-size: 25px;
       margin: auto;
+      letter-spacing: -1px;
     }
   }
 
   .image-wrapper {
     width: 100%;
     overflow: hidden;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
 
     img {
       width: 100%;
@@ -39,25 +39,33 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
     background-color: var(--albastru-cer);
-    padding: 20px 30px;
-    gap: 0.7em;
+    padding: 20px 30px 30px 30px;
+    gap: 0.5em;
 
     .simple-text {
+      color: white;
       font-size: 19px;
       font-family: "arial black", arial-w01-black, sans-serif;
     }
 
     .slider {
-      min-height: 8vh;
+      height: auto;
+      position: relative;
+      overflow: hidden;
+
+      .slick-slider .slick-initialized {
+        button {
+          display: none;
+        }
+      }
 
       .slider-link {
-        font-family: "poppins-extralight", poppins, sans-serif;
-        font-weight: thinner;
-        color: lightgray;
-        text-decoration: none;
         font-size: 20px;
+        font-weight: lighter;
+        text-decoration: none;
+        color: white;
+        margin: 0px 5px;
       }
 
       .slider-link:hover {

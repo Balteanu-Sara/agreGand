@@ -1,10 +1,23 @@
+import { Turtle } from "lucide-react";
 import { DataContext } from "../context/DataProvider.jsx";
 import { useState, useEffect, useContext } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Banner({ image, text, slider, spliter = true }) {
   const [recentNews, setRecentNews] = useState([]);
-  const { articles, loading, error } = useContext(DataContext);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const { articles, loading } = useContext(DataContext);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 5000,
+    cssEase: "ease",
+  };
 
   useEffect(() => {
     if (slider === false) return;
@@ -14,14 +27,9 @@ export default function Banner({ image, text, slider, spliter = true }) {
       return dateB - dateA;
     });
     setRecentNews(sortedArticles.slice(0, 5));
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % 5);
-    }, 5000);
-    return () => clearInterval(interval);
   }, [articles]);
 
-  function truncateTitle(title, maxLength = 100) {
+  function truncateTitle(title, maxLength = 70) {
     if (title.length <= maxLength) return title;
     return title.slice(0, maxLength) + "...";
   }
@@ -46,12 +54,12 @@ export default function Banner({ image, text, slider, spliter = true }) {
           {slider && loading && (
             <div
               style={{
-                textAlign: "center",
                 fontSize: "16px",
                 minHeight: "8vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                color: "white",
               }}
             >
               Se încarcă...
@@ -59,13 +67,43 @@ export default function Banner({ image, text, slider, spliter = true }) {
           )}
           {slider && recentNews.length > 0 && (
             <div className="slider">
-              <a
-                href={recentNews[currentIndex]?.link}
-                className="slider-link"
-                target="_blank"
-              >
-                {truncateTitle(recentNews[currentIndex].title)}
-              </a>
+              <Slider {...settings}>
+                <a
+                  href={recentNews[0]?.link}
+                  className="slider-link"
+                  target="_blank"
+                >
+                  {truncateTitle(recentNews[0].title)}
+                </a>
+                <a
+                  href={recentNews[1]?.link}
+                  className="slider-link"
+                  target="_blank"
+                >
+                  {truncateTitle(recentNews[1].title)}
+                </a>
+                <a
+                  href={recentNews[2]?.link}
+                  className="slider-link"
+                  target="_blank"
+                >
+                  {truncateTitle(recentNews[2].title)}
+                </a>
+                <a
+                  href={recentNews[3]?.link}
+                  className="slider-link"
+                  target="_blank"
+                >
+                  {truncateTitle(recentNews[3].title)}
+                </a>
+                <a
+                  href={recentNews[4]?.link}
+                  className="slider-link"
+                  target="_blank"
+                >
+                  {truncateTitle(recentNews[4].title)}
+                </a>
+              </Slider>
             </div>
           )}
         </div>
