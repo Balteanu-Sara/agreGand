@@ -196,7 +196,9 @@ export default function Header() {
         <Logo onClick={goHome} />
         <SearchButton onClick={toggleSearchView} />
       </div>
-      <Menu onClick={toggleNavBarView} className="right-side" />
+      <div className="right-side">
+        <Menu onClick={toggleNavBarView} className="nav-button" />
+      </div>
       {toggleNavBar && <NavBar onClick={toggleNavBarView} />}
     </div>
   );

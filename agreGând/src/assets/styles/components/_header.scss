@@ -53,13 +53,11 @@
     gap: 30px;
 
     .logo {
-      min-height: 25px;
       min-width: 25px;
     }
 
     .search {
-      min-height: 25px;
-      min-width: 25px;
+      min-width: 30px;
     }
   }
 
@@ -93,7 +91,10 @@
   }
 
   .right-side {
-    min-height: 25px;
-    color: white;
+    .nav-button {
+      color: white;
+      min-width: 25px;
+      min-height: 25px;
+    }
   }
 }

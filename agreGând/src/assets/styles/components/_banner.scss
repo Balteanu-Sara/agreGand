@@ -54,18 +54,12 @@
       position: relative;
       overflow: hidden;
 
-      .slick-slider .slick-initialized {
-        button {
-          display: none;
-        }
-      }
-
       .slider-link {
         font-size: 20px;
         font-weight: lighter;
         text-decoration: none;
         color: white;
-        margin: 0px 5px;
+        padding: 0px 10px;
       }
 
       .slider-link:hover {
