@@ -141,27 +141,51 @@ function SearchArea({ onClick }) {
   );
 }
 
-function NavBar({ onClick }) {
+function NavBar({ onClick, show }) {
+  const currentUrl = window.location.href;
+
   return (
-    <div className="navigation-area">
+    <div className={"navigation-area " + show}>
       <ul>
         <li>
-          <Link to="/" className="menu-element">
+          <Link
+            to="/"
+            className={
+              "menu-element" + (currentUrl.endsWith("/") ? " selected" : "")
+            }
+          >
             Acasă
           </Link>
         </li>
         <li>
-          <Link to="/news" className="menu-element">
+          <Link
+            to="/news"
+            className={
+              "menu-element" + (currentUrl.includes("news") ? " selected" : "")
+            }
+          >
             Știri
           </Link>
         </li>
         <li>
-          <Link to="/resources" className="menu-element">
+          <Link
+            to="/resources"
+            className={
+              "menu-element" +
+              (currentUrl.includes("resources") ? " selected" : "")
+            }
+          >
             Resurse
           </Link>
         </li>
         <li>
-          <Link to="/about-us" className="menu-element">
+          <Link
+            to="/about-us"
+            className={
+              "menu-element" +
+              (currentUrl.includes("about-us") ? " selected" : "")
+            }
+          >
             Despre noi
           </Link>
         </li>
@@ -176,6 +200,24 @@ export default function Header() {
   const navigate = useNavigate();
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavBar, setToggleNavBar] = useState(false);
+  const [show, setShow] = useState("");
+
+  useEffect(() => {
+    if (toggleNavBar) {
+      setShow("show");
+      return;
+    }
+    if (!toggleNavBar && show === "show") {
+      setShow("close");
+      const timeout = setTimeout(() => {
+        setShow("");
+      }, 2000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [toggleNavBar]);
 
   function goHome() {
     navigate("/");
@@ -199,7 +241,7 @@ export default function Header() {
       <div className="right-side">
         <Menu onClick={toggleNavBarView} className="nav-button" />
       </div>
-      {toggleNavBar && <NavBar onClick={toggleNavBarView} />}
+      <NavBar onClick={toggleNavBarView} show={show} />
     </div>
   );
 }
