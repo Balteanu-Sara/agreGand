@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../context/DataProvider";
+import { Search, X } from "lucide-react";
 
 export default function SearchContent() {
   const navigate = useNavigate();
@@ -48,35 +49,43 @@ export default function SearchContent() {
 
   return (
     <div className="search-content">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleEnter}
-      />
-      <div className="results">
-        {loading && <div className="overlay">Se încarcă...</div>}
-        <div className={`results-area ${loading ? "blurred" : ""}`}>
-          {!loading && lastInput && filteredArticles.length === 0 && (
-            <>
-              <p>0 rezultate pentru "{lastInput}"</p>
-              <div>Nu au fost găsite rezultate!</div>
-            </>
-          )}
-          {!loading && filteredArticles.length !== 0 && (
-            <>
-              <p>
-                {filteredArticles.length} rezultate pentru "{lastInput}"
-              </p>
-              <div>
-                {filteredArticles.map((article) => (
-                  <p key={article.link}>
-                    <a href={article.link}>{article.title}</a>
-                  </p>
-                ))}
-              </div>
-            </>
-          )}
+      <div className="title">Rezultatele căutării</div>
+      <div className="content">
+        <div className="search-area">
+          <Search />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleEnter}
+            placeholder="Caută..."
+          />
+          <X />
+        </div>
+        <div className="results">
+          {loading && <div className="overlay">Se încarcă...</div>}
+          <div className={`results-area ${loading ? "blurred" : ""}`}>
+            {!loading && lastInput && filteredArticles.length === 0 && (
+              <>
+                <p>0 rezultate pentru "{lastInput}"</p>
+                <div>Nu au fost găsite rezultate!</div>
+              </>
+            )}
+            {!loading && filteredArticles.length !== 0 && (
+              <>
+                <p>
+                  {filteredArticles.length} rezultate pentru "{lastInput}"
+                </p>
+                <div>
+                  {filteredArticles.map((article) => (
+                    <p key={article.link}>
+                      <a href={article.link}>{article.title}</a>
+                    </p>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
