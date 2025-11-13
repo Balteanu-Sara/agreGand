@@ -7,33 +7,100 @@
   padding: 20px;
   background-color: var(--albastru-cer);
 
+  .backdrop {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
   .search-area {
     display: flex;
     flex-direction: column;
     background-color: white;
-    position: absolute;
+    transition: ease-in;
+    position: fixed;
     z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
+    max-height: 90vh;
+    min-height: 30vh;
+    // height: 100%;
+    padding: 40px 20px 30px 40px;
+
+    .search-container {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5em;
+
+      .left-side {
+        border: 2px solid var(--albastru-inchis);
+        min-height: 6vh;
+        gap: 0px;
+
+        .lucide.lucide-search {
+          min-height: auto;
+          min-width: auto;
+          margin: 0px 15px;
+          align-self: center;
+        }
+
+        input {
+          border: none;
+          font: normal normal lighter 18px proxima-n-w01-reg, sans-serif;
+          width: 50vw;
+          padding-right: 15px;
+        }
+
+        input:focus {
+          outline: none;
+        }
+      }
+
+      .left-side:focus-within {
+        border: 2px solid lightgrey;
+      }
+
+      .right-side {
+        padding: 10px;
+        align-self: center;
+        font: normal normal normal 18px proxima-n-w01-reg, sans-serif;
+      }
+    }
 
     .results-area {
+      padding-top: 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      p {
+        font-size: 23px;
+        margin: 0;
+        font-family: "arial black", arial-w01-black, sans-serif;
+        color: var(--albastru-cer);
+      }
+
       .results-found {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 1.5em;
         align-items: baseline;
 
         .result {
           display: flex;
           flex-direction: row;
           gap: 0.5em;
+          width: 100%;
 
           .image-wrapper {
+            max-width: 35vw;
             overflow: hidden;
-            width: 100%;
-            aspect-ratio: 5 / 4;
+            aspect-ratio: 5/5;
 
             img {
               width: 100%;
@@ -41,6 +108,35 @@
               object-fit: cover;
               object-position: center;
             }
+          }
+
+          .text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            .title {
+              font-family: "arial black", arial-w01-black, sans-serif;
+              font-size: 19px;
+            }
+
+            .description {
+              font: normal normal lighter 16px proxima-n-w01-reg, sans-serif;
+            }
+          }
+        }
+
+        button {
+          border: none;
+          margin-top: 20px;
+          height: 5vh;
+          padding: 10px 16px;
+          background-color: var(--albastru-inchis);
+
+          span {
+            color: white;
+            font-family: proxima-n-w01-reg, sans-serif;
+            font-size: 16px;
           }
         }
       }

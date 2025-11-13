@@ -97,21 +97,25 @@ function SearchArea({ onClick }) {
   return (
     <div className="search-area">
       <div className="search-container">
-        <Search />
-        <input
-          type="text"
-          placeholder="Caută..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={onClick}>Închide</button>
+        <div className="left-side">
+          <Search />
+          <input
+            type="text"
+            placeholder="Caută..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        <div onClick={onClick} className="right-side">
+          Închide
+        </div>
       </div>
       <div className="results-area">
         <p>Rezultate</p>
-        {loadingFilter && <div>Se încarcă...</div>}
+        {loadingFilter && <div className="loading">Se încarcă...</div>}
         {!loadingFilter && !filteredArticles.length && query && (
           <div className="results-not-found">
-            Nu s-au găsit rezultate pentru: "{query}"
+            Nu s-au găsit rezultate pentru: {query}
           </div>
         )}
         {!loadingFilter && (
@@ -122,7 +126,14 @@ function SearchArea({ onClick }) {
                   <div className="image-wrapper">
                     <img src={article.image} alt="poza" />
                   </div>
-                  <div>{article.title.slice(0, 70) + "..."}</div>
+                  <div className="text">
+                    <div className="title">
+                      {article.title.slice(0, 40) + "..."}
+                    </div>
+                    <div className="description">
+                      {article.description.slice(0, 55) + "..."}
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -132,7 +143,7 @@ function SearchArea({ onClick }) {
                 navigate(`/search/${query}`);
               }}
             >
-              Vezi toate rezultatele
+              <span>Vezi toate rezultatele</span>
             </button>
           </div>
         )}
@@ -233,7 +244,12 @@ export default function Header() {
 
   return (
     <div className="header">
-      {toggleSearch && <SearchArea onClick={toggleSearchView} />}
+      {toggleSearch && (
+        <>
+          <div className="backdrop"></div>
+          <SearchArea onClick={toggleSearchView} />
+        </>
+      )}
       <div className="left-side">
         <Logo onClick={goHome} />
         <SearchButton onClick={toggleSearchView} />
