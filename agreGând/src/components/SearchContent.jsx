@@ -60,27 +60,34 @@ export default function SearchContent() {
             onKeyDown={handleEnter}
             placeholder="Caută..."
           />
-          <X />
+          <X
+            onClick={() => {
+              setInputValue("");
+            }}
+          />
         </div>
         <div className="results">
-          {loading && <div className="overlay">Se încarcă...</div>}
-          <div className={`results-area ${loading ? "blurred" : ""}`}>
+          {loading && <div className="overlay"></div>}
+          <div className="results-area">
             {!loading && lastInput && filteredArticles.length === 0 && (
               <>
                 <p>0 rezultate pentru "{lastInput}"</p>
                 <div>Nu au fost găsite rezultate!</div>
               </>
             )}
-            {!loading && filteredArticles.length !== 0 && (
+            {filteredArticles.length !== 0 && (
               <>
                 <p>
                   {filteredArticles.length} rezultate pentru "{lastInput}"
                 </p>
                 <div>
                   {filteredArticles.map((article) => (
-                    <p key={article.link}>
-                      <a href={article.link}>{article.title}</a>
-                    </p>
+                    <div key={article.link} className="result">
+                      <a href={article.link} target="_blank">
+                        {article.title.slice(0, 80) + "..."}
+                      </a>
+                      <p>{article.description.slice(0, 50) + "..."}</p>
+                    </div>
                   ))}
                 </div>
               </>

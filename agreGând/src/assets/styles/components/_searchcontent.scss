@@ -1,6 +1,92 @@
 .search-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  .title {
+    padding-top: 5px;
+    text-align: center;
+    font-family: "arial black", arial-w01-black, sans-serif;
+    font-size: 25px;
+    color: var(--albastru-cer);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .search-area {
+      margin: 0px 20px;
+      display: flex;
+      flex-direction: row;
+      border: 2px solid lightgrey;
+      min-height: 5vh;
+
+      .lucide.lucide-search {
+        min-height: auto;
+        min-width: auto;
+        margin: 0px 15px;
+        align-self: center;
+        color: rgb(155, 155, 155);
+      }
+
+      input {
+        border: none;
+        font: normal normal lighter 16px proxima-n-w01-reg, sans-serif;
+        min-width: 64vw;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      .lucide.lucide-x {
+        min-height: auto;
+        min-width: auto;
+        margin: 0px 15px;
+        align-self: center;
+        color: rgb(155, 155, 155);
+      }
+    }
+
+    .results {
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        z-index: 5;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .results-area {
+        padding: 0px 20px 20px 20px;
+
+        .result {
+          margin: 30px 0px;
+
+          a {
+            text-decoration: none;
+            color: var(--albastru-inchis);
+            font-size: 20px;
+            font-family: "arial black", arial-w01-black, sans-serif;
+          }
+
+          p {
+            margin: 0px;
+          }
+        }
+      }
+    }
+  }
+
   .results {
     .overlay {
+      z-index: 5;
     }
 
     .results-area {
