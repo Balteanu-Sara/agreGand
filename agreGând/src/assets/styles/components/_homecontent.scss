@@ -69,8 +69,10 @@
           gap: 0.5em;
 
           p {
-            height: auto;
-            width: auto;
+            // height: auto;
+            // width: auto;
+            text-align: center;
+            align-self: center;
             margin: 0;
             color: white;
             background-color: var(--albastru-inchis);
@@ -83,16 +85,18 @@
 
     button {
       align-self: center;
-      background-color: var(--albastru-inchis);
+      background-color: #084ebd;
       color: white;
       border: none;
       min-height: 3vh;
       min-width: 50vw;
+      box-shadow: 5px 5px 10px 1px rgb(0 0 0 / 0.3);
+      border-radius: 2px;
     }
 
     button:hover {
       cursor: pointer;
-      background-color: var(--albastru-scris);
+      background-color: var(--albastru-inchis);
     }
   }
 

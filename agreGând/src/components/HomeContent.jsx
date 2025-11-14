@@ -51,7 +51,10 @@ function HomeSection({ source }) {
           );
         })}
       </div>
-      <button onClick={goNews}>Vezi mai multe de la {source}</button>
+      <button onClick={goNews}>
+        Vezi mai multe de la{" "}
+        <span style={{ fontStyle: "italic" }}>{source}</span>
+      </button>
     </div>
   );
 }
