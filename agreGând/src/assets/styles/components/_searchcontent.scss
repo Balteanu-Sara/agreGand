@@ -64,6 +64,7 @@
       }
 
       .results-area {
+        min-height: 20vh;
         padding: 0px 20px 20px 20px;
 
         .result {
@@ -81,16 +82,14 @@
           }
         }
       }
-    }
-  }
 
-  .results {
-    .overlay {
-      z-index: 5;
-    }
-
-    .results-area {
-      min-height: 20vh;
+      .manage-results {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+      }
     }
   }
 }

@@ -1,7 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../context/DataProvider";
-import { Search, X } from "lucide-react";
+import {
+  Search,
+  X,
+  ChevronsLeft,
+  ChevronsRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 export default function SearchContent() {
   const navigate = useNavigate();
@@ -12,10 +19,12 @@ export default function SearchContent() {
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [lastInput, setLastInput] = useState(query || "");
+  const [currentIndexes, setCurrentIndexes] = useState({ start: 0, end: 9 });
 
   useEffect(() => setLastInput(query || ""), [query]);
 
   useEffect(() => {
+    setCurrentIndexes({ start: 0, end: 9 });
     if (!lastInput) {
       setFilteredArticles([...articles]);
       return;
@@ -47,6 +56,7 @@ export default function SearchContent() {
     return;
   }
 
+  console.log(currentIndexes);
   return (
     <div className="search-content">
       <div className="title">Rezultatele căutării</div>
@@ -81,16 +91,80 @@ export default function SearchContent() {
                   {filteredArticles.length} rezultate pentru "{lastInput}"
                 </p>
                 <div>
-                  {filteredArticles.map((article) => (
-                    <div key={article.link} className="result">
-                      <a href={article.link} target="_blank">
-                        {article.title.slice(0, 80) + "..."}
-                      </a>
-                      <p>{article.description.slice(0, 50) + "..."}</p>
-                    </div>
-                  ))}
+                  {filteredArticles
+                    .filter((article, index) => {
+                      if (
+                        index >= currentIndexes.start &&
+                        index <= currentIndexes.end
+                      )
+                        return article;
+                    })
+                    .map((article) => (
+                      <div key={article.link} className="result">
+                        <a href={article.link} target="_blank">
+                          {article.title.slice(0, 80) + "..."}
+                        </a>
+                        <p>{article.description.slice(0, 50) + "..."}</p>
+                      </div>
+                    ))}
                 </div>
               </>
+            )}
+            {filteredArticles.length > 10 && (
+              <div className="manage-results">
+                {filteredArticles.length > 20 && (
+                  <ChevronsLeft
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setCurrentIndexes({ start: 0, end: 9 });
+                    }}
+                  />
+                )}
+                <ChevronLeft
+                  onClick={() => {
+                    if (currentIndexes.start > 0) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setCurrentIndexes({
+                        start: currentIndexes.start - 10,
+                        end: currentIndexes.start - 1,
+                      });
+                    }
+                  }}
+                />
+                <p>
+                  {Math.floor(currentIndexes.end / 10) + 1}/
+                  {Math.floor(filteredArticles.length / 10) +
+                    (filteredArticles.length % 10 === 0 ? 0 : 1)}{" "}
+                </p>
+                <ChevronRight
+                  onClick={() => {
+                    if (
+                      currentIndexes.start <
+                      10 * Math.floor(filteredArticles.length / 10)
+                    ) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setCurrentIndexes({
+                        start: currentIndexes.start + 10,
+                        end:
+                          currentIndexes.end + 10 < filteredArticles.length
+                            ? currentIndexes.end + 10
+                            : filteredArticles.length - 1,
+                      });
+                    }
+                  }}
+                />
+                {filteredArticles.length > 20 && (
+                  <ChevronsRight
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                      setCurrentIndexes({
+                        start: 10 * Math.floor(filteredArticles.length / 10),
+                        end: filteredArticles.length - 1,
+                      });
+                    }}
+                  />
+                )}
+              </div>
             )}
           </div>
         </div>
