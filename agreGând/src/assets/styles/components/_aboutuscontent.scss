@@ -1,0 +1,133 @@
+.aboutus-content {
+  display: flex;
+  flex-direction: column;
+
+  .purpose {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: var(--albastru-scris);
+
+    h1 {
+      margin: 0;
+    }
+
+    p {
+      font-size: 20px;
+      padding: 0px 5px;
+
+      a {
+        text-decoration: none;
+        color: var(--albastru-scris);
+      }
+    }
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: var(--albastru-scris);
+
+    h1 {
+      margin: 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      .contact-fields {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0px;
+        gap: 1em;
+
+        .contact-field {
+          display: flex;
+          gap: 0.5em;
+
+          h2 {
+            margin: 0;
+          }
+
+          div {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            .lucide.lucide-facebook,
+            .lucide.lucide-twitter,
+            .lucide.lucide-instagram {
+              color: var(--albastru-inchis);
+            }
+          }
+        }
+      }
+
+      .forms {
+        margin: 10px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        .field {
+          width: 100%;
+
+          label {
+            font: 16px;
+            margin-bottom: 5px;
+            font-family: proxima-n-w01-reg, sans-serif;
+          }
+
+          .fake-input {
+            min-width: 80vw;
+            border: 2px solid lightgrey;
+            min-height: 5vh;
+
+            input {
+              min-height: 4vh;
+              align-self: center;
+              width: 100%;
+              border: none;
+              font: normal normal lighter 18px proxima-n-w01-reg, sans-serif;
+              padding: 10px 15px;
+            }
+
+            input:focus {
+              outline: none;
+            }
+
+            .mesaj {
+              min-height: 6vh;
+            }
+          }
+
+          .fake-input:focus-within {
+            border: 2px solid var(--albastru-inchis);
+          }
+        }
+
+        button {
+          border: none;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 18px;
+          //min-height: 5vh;
+          background-color: var(--albastru-cer);
+          color: white;
+          font-family: "arial black", arial-w01-black, sans-serif;
+        }
+
+        button:hover {
+          cursor: pointer;
+          background-color: #1c3781;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

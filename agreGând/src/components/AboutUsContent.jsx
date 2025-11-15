@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function Form() {
@@ -27,33 +28,51 @@ function Form() {
 
   return (
     <form onSubmit={handleSubmit} className="forms">
-      <label htmlFor="nume">Nume</label>
-      <input
-        type="text"
-        name="nume"
-        value={nume}
-        onChange={(e) => setNume(e.target.value)}
-      />
-      <label htmlFor="prenume">Preume</label>
-      <input
-        type="text"
-        name="prenume"
-        value={prenume}
-        onChange={(e) => setPrenume(e.target.value)}
-      />
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <label htmlFor="mesaj">Mesaj</label>
-      <textarea
-        name="mesaj"
-        value={mesaj}
-        onChange={(e) => setMesaj(e.target.value)}
-      ></textarea>
+      <div className="field">
+        <label htmlFor="nume">Nume</label>
+        <div className="fake-input">
+          <input
+            type="text"
+            name="nume"
+            value={nume}
+            onChange={(e) => setNume(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label htmlFor="prenume">Prenume</label>
+        <div className="fake-input">
+          <input
+            type="text"
+            name="prenume"
+            value={prenume}
+            onChange={(e) => setPrenume(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label htmlFor="email">Email</label>
+        <div className="fake-input">
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label htmlFor="mesaj">Mesaj</label>
+        <div className="fake-input">
+          <input
+            type="text"
+            name="mesaj"
+            value={mesaj}
+            onChange={(e) => setMesaj(e.target.value)}
+            className="mesaj"
+          />
+        </div>
+      </div>
       <button type="submit">Trimite</button>
       {response && <p>{response}</p>}
     </form>
@@ -63,22 +82,37 @@ function Form() {
 function Contact() {
   return (
     <div className="contact">
-      <h1>Contactează-ne!</h1>
-      <h2>Email:</h2>
-      <div>office@agregand.ro</div>
-      <h2>Rețele de socializare:</h2>
-      <div className="data-contact">
-        <a href="">
-          <Facebook />
-        </a>
-        <a href="">
-          <Twitter />
-        </a>
-        <a href="">
-          <Instagram />
-        </a>
+      <h1>Contactează-ne pentru mai multe detalii sau colaborări!</h1>
+      <div>
+        <div className="contact-fields">
+          <div className="contact-field">
+            <h2>Email:</h2>
+            <div
+              style={{
+                fontSize: "20px",
+                fontFamily: "proxima-n-w01-reg, sans-serif",
+              }}
+            >
+              office@agregand.ro
+            </div>
+          </div>
+          <div className="contact-field">
+            <h2>Rețele de socializare:</h2>
+            <div className="data-contact">
+              <a href="">
+                <Facebook />
+              </a>
+              <a href="">
+                <Twitter />
+              </a>
+              <a href="">
+                <Instagram />
+              </a>
+            </div>
+          </div>
+        </div>
+        <Form />{" "}
       </div>
-      <Form />
     </div>
   );
 }
@@ -95,9 +129,17 @@ function Purpose() {
         prezentarea conținutului într-o manieră clară și intuitivă, platforma
         ajută utilizatorii să economisească timp și să obțină o imagine de
         ansamblu echilibrată asupra evenimentelor curente, fără a fi copleșiți
-        de volumul mare de informație disponibil online. Au fost selecționate cu
-        vigilență surse de încredere, enumerate și descrise <a href="">aici</a>,
-        deoarece diversitatea temelor abordate, transparența modului în care
+        de volumul mare de informație disponibil online.{" "}
+      </p>
+      <p>
+        Au fost selecționate cu vigilență surse de încredere, enumerate și
+        descrise{" "}
+        <span style={{ fontStyle: "italic" }}>
+          <Link to="/resources" className="to-resources">
+            aici
+          </Link>
+        </span>
+        , deoarece diversitatea temelor abordate, transparența modului în care
         acestea sunt prezentate și verificarea informațiilor înainte de
         publicare reprezintă puncte esențiale pentru noi. În acest fel,{" "}
         <strong>agreGând</strong> încurajează formarea unei opinii informate,
