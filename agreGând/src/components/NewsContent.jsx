@@ -15,18 +15,19 @@ function NewsArticle({ image, title, link, description, categories }) {
         </a>
       </h1>
       <div className="description">{description}</div>
+      <hr />
       <div className="categories">
         {categories.slice(0, 3).map((cat, index) => (
           <p key={cat + index}>{cat}</p>
         ))}
       </div>
-      <hr />
     </div>
   );
 }
 
-function OptionsArea({ onClick, options }) {
+function OptionsArea({ onClick, options, selected }) {
   const navigate = useNavigate();
+  const selectedOption = selected ? selected : "Toate postările";
 
   function changeOption(option) {
     if (option === "Toate postările") navigate("/news");
@@ -37,15 +38,19 @@ function OptionsArea({ onClick, options }) {
     <div className="options-section">
       <div className="actual-options">
         {options.map((option, index) => (
-          <div onClick={() => changeOption(option)} key={option + index}>
+          <div
+            onClick={() => changeOption(option)}
+            key={option + index}
+            className={option === selectedOption ? "selected" : "not-selected"}
+          >
             {option}
           </div>
         ))}
       </div>
       <hr />
-      <div onClick={onClick}>
+      <div onClick={onClick} className="close-options">
         <X />
-        <div>Inchide</div>
+        <div>Închide</div>
       </div>
     </div>
   );
@@ -96,7 +101,14 @@ export default function NewsContent() {
         </button>
       </div>
       {toggleOptions && (
-        <OptionsArea onClick={toggleOptionsView} options={options} />
+        <>
+          <OptionsArea
+            onClick={toggleOptionsView}
+            options={options}
+            selected={source}
+          />
+          <div className="overlay"></div>
+        </>
       )}
       <div className="actual-content">
         {filteredArticles.length < show

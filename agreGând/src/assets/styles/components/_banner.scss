@@ -40,7 +40,7 @@
     flex-direction: column;
     justify-content: center;
     background-color: var(--albastru-cer);
-    padding: 20px 30px 30px 30px;
+    padding: 20px 30px;
     gap: 0.5em;
 
     .simple-text {
@@ -53,6 +53,7 @@
       height: auto;
       position: relative;
       overflow: hidden;
+      padding-bottom: 10px;
 
       .slider-link {
         font-size: 20px;
