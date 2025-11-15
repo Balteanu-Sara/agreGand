@@ -31,6 +31,10 @@
         color: rgb(155, 155, 155);
       }
 
+      .lucide.lucide-search:hover {
+        cursor: pointer;
+      }
+
       input {
         border: none;
         font: normal normal lighter 16px proxima-n-w01-reg, sans-serif;
@@ -72,6 +76,7 @@
 
           a {
             text-decoration: none;
+            cursor: pointer;
             color: var(--albastru-inchis);
             font-size: 20px;
             font-family: "arial black", arial-w01-black, sans-serif;

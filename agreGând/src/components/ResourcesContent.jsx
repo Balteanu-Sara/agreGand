@@ -36,7 +36,7 @@ export default function ResourcesContent() {
         image={context}
         title="Context"
         link="https://context.ro/despre-noi"
-        description="Documentăm în mod independent activitatea instituțiilor publice, companiilor și entităților responsabile din societate, inclusiv comportamentul reprezentanților oficiali de la toate nivelurile administrative și guvernamentale. Suntem preocupați ca instituțiile și actorii societății noastre să fie supuși unui control civil real. "
+        description=",,Documentăm în mod independent activitatea instituțiilor publice, companiilor și entităților responsabile din societate, inclusiv comportamentul reprezentanților oficiali de la toate nivelurile administrative și guvernamentale. Suntem preocupați ca instituțiile și actorii societății noastre să fie supuși unui control civil real.'' "
       />
       <Resource
         image={hotnews}
@@ -48,13 +48,13 @@ export default function ResourcesContent() {
         image={snoop}
         title="Snoop"
         link="https://snoop.ro/cine-suntem/"
-        description="Snoop va munci să apere interesul public, în sensul de a descoperi și expune infracțiuni sau abuzuri împotriva sănătății publice, drepturilor și libertăților cetățeanului. Vom scrie despre cazuri care să prevină ca publicul să fie înșelat sau nedreptățit de acțiuni ale statului, indivizilor sau organizațiilor, indiferent cât de puternice sunt acestea."
+        description=",,Snoop va munci să apere interesul public, în sensul de a descoperi și expune infracțiuni sau abuzuri împotriva sănătății publice, drepturilor și libertăților cetățeanului. Vom scrie despre cazuri care să prevină ca publicul să fie înșelat sau nedreptățit de acțiuni ale statului, indivizilor sau organizațiilor, indiferent cât de puternice sunt acestea.'' "
       />
       <Resource
         image={declic}
         title="Declic"
         link="https://www.declic.ro/despre-noi"
-        description="Suntem o echipă mică la Declic, dar facem lucruri minunate cu resurse puține. Îi ajutăm pe cei care vor să se implice prin inițierea unei petiții proprii sau reacționăm cu rapiditate atunci când sunt chestiuni arzătoare care cer implicarea unei comunități mari de cetățeni vigilenți."
+        description=",,Suntem o echipă mică la Declic, dar facem lucruri minunate cu resurse puține. Îi ajutăm pe cei care vor să se implice prin inițierea unei petiții proprii sau reacționăm cu rapiditate atunci când sunt chestiuni arzătoare care cer implicarea unei comunități mari de cetățeni vigilenți.''"
       />
       <Resource
         image={recorder}

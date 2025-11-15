@@ -49,6 +49,10 @@
           align-self: center;
         }
 
+        .lucide.lucide-search {
+          cursor: pointer;
+        }
+
         input {
           border: none;
           font: normal normal lighter 18px proxima-n-w01-reg, sans-serif;
@@ -69,6 +73,10 @@
         padding: 10px;
         align-self: center;
         font: normal normal normal 18px proxima-n-w01-reg, sans-serif;
+      }
+
+      .right-side:hover {
+        cursor: pointer;
       }
     }
 
@@ -139,6 +147,10 @@
             font-size: 16px;
           }
         }
+
+        button:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -152,8 +164,16 @@
       min-width: 25px;
     }
 
+    .logo:hover {
+      cursor: pointer;
+    }
+
     .search {
       min-width: 30px;
+    }
+
+    .search:hover {
+      cursor: pointer;
     }
   }
 
@@ -202,12 +222,20 @@
           color: lightgrey;
         }
       }
+
+      .menu-element:hover {
+        cursor: pointer;
+      }
     }
 
     .close-button {
       min-width: 40px;
       min-height: 40px;
       color: white;
+    }
+
+    .close-button:hover {
+      cursor: pointer;
     }
   }
 
@@ -216,6 +244,10 @@
       color: white;
       min-width: 25px;
       min-height: 25px;
+    }
+
+    .nav-button:hover {
+      cursor: pointer;
     }
   }
 }

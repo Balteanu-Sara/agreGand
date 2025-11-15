@@ -27,10 +27,10 @@ function NewsArticle({ image, title, link, description, categories }) {
 
 function OptionsArea({ onClick, options, selected }) {
   const navigate = useNavigate();
-  const selectedOption = selected ? selected : "Toate postările";
+  const selectedOption = selected ? selected : "Toate Postările";
 
   function changeOption(option) {
-    if (option === "Toate postările") navigate("/news");
+    if (option === "Toate Postările") navigate("/news");
     else navigate(`/news/${option}`);
   }
 
@@ -68,7 +68,7 @@ export default function NewsContent() {
   }, [source]);
 
   const options = [
-    "Toate postările",
+    "Toate Postările",
     "PressOne",
     "Context",
     "Snoop",
