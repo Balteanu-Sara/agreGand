@@ -10,80 +10,94 @@
   align-items: center;
   justify-content: space-around;
 
-  h1 {
-    text-align: center;
-    font: normal normal normal 25px "arial black", arial-w01-black, sans-serif;
-    margin: 0;
-    margin-bottom: 1vh;
-  }
-
-  .user-input {
-    width: 100%;
+  .sides {
     display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 0.7em;
+    flex-direction: row;
 
-    label {
-      font: normal normal normal 23.540000000000003px / 1.4em "arial black",
-        arial-w01-black, sans-serif;
-    }
+    .left-side {
+      h1 {
+        text-align: center;
+        font: normal normal normal 25px "arial black", arial-w01-black,
+          sans-serif;
+        margin: 0;
+        margin-bottom: 1vh;
+      }
 
-    div {
-      border-bottom: lightgray 1px solid;
-      padding: 8px 12px;
-      min-height: 40px;
-    }
+      .user-input {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 0.7em;
 
-    div:hover {
-      border-bottom: 1.5px solid white;
-    }
+        label {
+          font: normal normal normal 23.540000000000003px / 1.4em "arial black",
+            arial-w01-black, sans-serif;
+        }
 
-    input {
-      min-height: 40px;
-      border: none;
-      font: normal normal normal 20px poppins-extralight, poppins, sans-serif;
-      color: lightgray;
-      background-color: var(--albastru-inchis);
-    }
+        div {
+          border-bottom: lightgray 1px solid;
+          padding: 8px 12px;
+          min-height: 40px;
+        }
 
-    input:focus {
-      outline: none;
-    }
+        div:hover {
+          border-bottom: 1.5px solid white;
+        }
 
-    button {
-      border: none;
-      padding: 10px;
-      //min-height: 5vh;
-      background-color: var(--albastru-cer);
-      color: white;
+        input {
+          min-height: 40px;
+          border: none;
+          font: normal normal normal 20px poppins-extralight, poppins,
+            sans-serif;
+          color: lightgray;
+          background-color: var(--albastru-inchis);
+        }
 
-      span {
-        font: normal normal normal 23.540000000000003px / 1.4em "arial black",
-          arial-w01-black, sans-serif;
+        input:focus {
+          outline: none;
+        }
+
+        button {
+          border: none;
+          padding: 10px;
+          //min-height: 5vh;
+          background-color: var(--albastru-cer);
+          color: white;
+
+          span {
+            font: normal normal normal 23.540000000000003px / 1.4em
+                "arial black",
+              arial-w01-black, sans-serif;
+          }
+        }
+
+        button:hover {
+          cursor: pointer;
+          background-color: #1c3781;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .logos {
+        width: 100%;
+        gap: 1em;
+        display: flex;
+        justify-content: center;
+
+        a {
+          text-decoration: none;
+          cursor: pointer;
+          color: white;
+        }
       }
     }
 
-    button:hover {
-      cursor: pointer;
-      background-color: #1c3781;
-    }
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .logos {
-    width: 100%;
-    gap: 1em;
-    display: flex;
-    justify-content: center;
-
-    a {
-      text-decoration: none;
-      cursor: pointer;
-      color: white;
+    .right-side {
+      display: none;
     }
   }
 
@@ -93,6 +107,52 @@
     .footer-link {
       text-decoration: none;
       color: white;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding: 50px 20px 10px;
+
+    .sides {
+      width: 100%;
+      justify-content: space-around;
+
+      .left-side {
+        min-width: 40vw;
+        .logos {
+          justify-content: unset;
+        }
+      }
+
+      .right-side {
+        display: flex;
+        min-width: 10vw;
+
+        ul {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5em;
+          padding: 0px;
+
+          .menu-element {
+            text-decoration: none;
+            color: white;
+            font: normal normal normal 20px "arial black", arial-w01-black,
+              sans-serif;
+
+            &.selected {
+              color: lightgrey;
+            }
+          }
+
+          .menu-element:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
