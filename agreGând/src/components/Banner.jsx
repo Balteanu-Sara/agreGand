@@ -4,10 +4,16 @@ import { useState, useEffect, useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import banner_video from "../assets/images/video.mp4";
 
 export default function Banner({ image, text, slider, spliter = true }) {
   const [recentNews, setRecentNews] = useState([]);
   const { articles, loading } = useContext(DataContext);
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const currentUrl = window.location.href;
+  console.log(width);
 
   const settings = {
     dots: false,
@@ -41,11 +47,20 @@ export default function Banner({ image, text, slider, spliter = true }) {
         <h3 className="quote">Siguranță în știri și articole </h3>
       </div>
 
-      {image && (
+      {currentUrl.endsWith("/") && width >= 1024 ? (
         <div className="image-wrapper">
-          <img src={image} alt="poza" />
+          <video autoPlay loop muted>
+            <source src={banner_video} type="video/mp4" />
+          </video>
         </div>
+      ) : (
+        image && (
+          <div className="image-wrapper">
+            <img src={image} alt="poza" />
+          </div>
+        )
       )}
+
       {spliter && (
         <div className="breaker">
           <div className="simple-text">

@@ -69,3 +69,53 @@
     }
   }
 }
+
+@media (min-width: 1024px) {
+  .banner {
+    padding-left: 5vw;
+    padding-right: 5vw;
+
+    .titles {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+
+      .name {
+        margin: 0;
+        font-size: 130px;
+      }
+
+      .quote {
+        max-width: 156px;
+        margin: 0;
+        align-self: center;
+        padding: 10px 20px;
+        border-left: 4px solid var(--albastru-scris);
+      }
+    }
+
+    .image-wrapper {
+      aspect-ratio: 16/6;
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+    }
+
+    .breaker {
+      flex-direction: row;
+
+      .simple-text {
+        width: 20vw;
+      }
+
+      .slider {
+        width: 60vw;
+      }
+    }
+  }
+}
