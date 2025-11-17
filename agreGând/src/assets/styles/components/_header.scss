@@ -283,3 +283,63 @@
     opacity: 0.2;
   }
 }
+
+@media (min-width: 1024px) {
+  .header {
+    padding-right: 5vw;
+    .left-side {
+      display: flex;
+      flex-direction: row;
+      min-width: 50vw;
+
+      .logo {
+        max-width: 25px;
+      }
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+        padding: 0px;
+
+        .menu-option {
+          text-decoration: none;
+          color: white;
+          font: normal normal normal 18px "arial black", arial-w01-black,
+            sans-serif;
+
+          &.selected {
+            color: lightgrey;
+          }
+        }
+
+        .menu-option:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .right-side {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-width: 30vw;
+
+      .search {
+        max-width: 30px;
+      }
+
+      .logos {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

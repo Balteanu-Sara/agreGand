@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { DataContext } from "../context/DataProvider.jsx";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search, X, Facebook, Instagram, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Logo({ onClick }) {
@@ -207,11 +207,79 @@ function NavBar({ onClick, show }) {
   );
 }
 
+function NavBarOptions() {
+  const currentUrl = window.location.href;
+
+  return (
+    <ul>
+      <li>
+        <Link
+          to="/"
+          className={
+            "menu-option" + (currentUrl.endsWith("/") ? " selected" : "")
+          }
+        >
+          Acasă
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/news"
+          className={
+            "menu-option" + (currentUrl.includes("news") ? " selected" : "")
+          }
+        >
+          Știri
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/resources"
+          className={
+            "menu-option" +
+            (currentUrl.includes("resources") ? " selected" : "")
+          }
+        >
+          Resurse
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/about-us"
+          className={
+            "menu-option" + (currentUrl.includes("about-us") ? " selected" : "")
+          }
+        >
+          Despre noi
+        </Link>
+      </li>
+    </ul>
+  );
+}
+
+function Logos() {
+  return (
+    <div className="logos">
+      <a href="">
+        <Facebook />
+      </a>
+      <a href="">
+        <Twitter />
+      </a>
+      <a href="">
+        <Instagram />
+      </a>
+    </div>
+  );
+}
+
 export default function Header() {
   const navigate = useNavigate();
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavBar, setToggleNavBar] = useState(false);
   const [show, setShow] = useState("");
+
+  const width = window.innerWidth;
 
   useEffect(() => {
     if (toggleNavBar) {
@@ -250,14 +318,30 @@ export default function Header() {
           <SearchArea onClick={toggleSearchView} />
         </>
       )}
-      <div className="left-side">
-        <Logo onClick={goHome} />
-        <SearchButton onClick={toggleSearchView} />
-      </div>
-      <div className="right-side">
-        <Menu onClick={toggleNavBarView} className="nav-button" />
-      </div>
-      <NavBar onClick={toggleNavBarView} show={show} />
+      {width < 1024 && (
+        <>
+          <div className="left-side">
+            <Logo onClick={goHome} />
+            <SearchButton onClick={toggleSearchView} />
+          </div>
+          <div className="right-side">
+            <Menu onClick={toggleNavBarView} className="nav-button" />
+          </div>
+          <NavBar onClick={toggleNavBarView} show={show} />
+        </>
+      )}
+      {width >= 1024 && (
+        <>
+          <div className="left-side">
+            <Logo onClick={goHome} />
+            <NavBarOptions />
+          </div>
+          <div className="right-side">
+            <SearchButton onClick={toggleSearchView} />
+            <Logos />
+          </div>
+        </>
+      )}
     </div>
   );
 }

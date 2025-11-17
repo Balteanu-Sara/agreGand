@@ -13,7 +13,6 @@ export default function Banner({ image, text, slider, spliter = true }) {
   const width = window.innerWidth;
   const height = window.innerHeight;
   const currentUrl = window.location.href;
-  console.log(width);
 
   const settings = {
     dots: false,
