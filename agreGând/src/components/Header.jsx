@@ -66,6 +66,8 @@ function SearchArea({ onClick }) {
   const [filteredArticles, setFilteredArticles] = useState([...articles]);
   const [query, setQuery] = useState("");
 
+  const width = window.innerWidth;
+
   useEffect(() => {
     console.log(query);
     if (query === "") {
@@ -120,23 +122,25 @@ function SearchArea({ onClick }) {
         )}
         {!loadingFilter && (
           <div className="results-found">
-            {filteredArticles.slice(0, 3).map((article) => {
-              return (
-                <div className="result" key={article.link}>
-                  <div className="image-wrapper">
-                    <img src={article.image} alt="poza" />
-                  </div>
-                  <div className="text">
-                    <div className="title">
-                      {article.title.slice(0, 40) + "..."}
+            <div className="actual-results">
+              {filteredArticles.slice(0, 3).map((article) => {
+                return (
+                  <div className="result" key={article.link}>
+                    <div className="image-wrapper">
+                      <img src={article.image} alt="poza" />
                     </div>
-                    <div className="description">
-                      {article.description.slice(0, 55) + "..."}
+                    <div className="text">
+                      <div className="title">
+                        {article.title.slice(0, 40) + "..."}
+                      </div>
+                      <div className="description">
+                        {article.description.slice(0, 55) + "..."}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
             <button
               onClick={() => {
                 onClick();
@@ -333,7 +337,9 @@ export default function Header() {
       {width >= 1024 && (
         <>
           <div className="left-side">
-            <Logo onClick={goHome} />
+            <div>
+              <Logo onClick={goHome} />
+            </div>
             <NavBarOptions />
           </div>
           <div className="right-side">

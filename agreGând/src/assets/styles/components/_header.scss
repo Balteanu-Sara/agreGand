@@ -99,37 +99,48 @@
         gap: 1.5em;
         align-items: baseline;
 
-        .result {
+        .actual-results {
           display: flex;
-          flex-direction: row;
-          gap: 0.5em;
-          width: 100%;
+          flex-direction: column;
+          gap: 1.5em;
+          align-items: baseline;
 
-          .image-wrapper {
-            max-width: 35vw;
-            overflow: hidden;
-            aspect-ratio: 5/5;
-
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              object-position: center;
-            }
-          }
-
-          .text {
+          .result {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 0.5em;
+            width: 100%;
 
-            .title {
-              font-family: "arial black", arial-w01-black, sans-serif;
-              font-size: 19px;
+            .image-wrapper {
+              width: 150px;
+              max-width: 35vw;
+              min-width: 100px;
+              flex-shrink: 0;
+              aspect-ratio: 1;
+              overflow: hidden;
+              aspect-ratio: 5/5;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+              }
             }
 
-            .description {
-              font: normal normal lighter 16px proxima-n-w01-reg, sans-serif;
+            .text {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5em;
+
+              .title {
+                font-family: "arial black", arial-w01-black, sans-serif;
+                font-size: 19px;
+              }
+
+              .description {
+                font: normal normal lighter 16px proxima-n-w01-reg, sans-serif;
+              }
             }
           }
         }
@@ -287,13 +298,52 @@
 @media (min-width: 1024px) {
   .header {
     padding-right: 5vw;
+    padding-left: 0px;
+
+    .search-area {
+      max-height: 55vh;
+
+      .results-area {
+        .results-found {
+          .actual-results {
+            display: flex;
+            flex-direction: row;
+            align-items: unset;
+
+            .result {
+              width: 30vw;
+
+              .image-wrapper {
+                width: 120px;
+                max-width: 220px;
+              }
+            }
+
+            .text {
+              .title {
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+    }
+
     .left-side {
       display: flex;
       flex-direction: row;
       min-width: 50vw;
+      gap: 0px;
 
-      .logo {
-        max-width: 25px;
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5vw;
+
+        .logo {
+          max-width: 25px;
+        }
       }
 
       ul {
