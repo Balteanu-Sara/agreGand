@@ -21,6 +21,8 @@ export default function SearchContent() {
   const [lastInput, setLastInput] = useState(query || "");
   const [currentIndexes, setCurrentIndexes] = useState({ start: 0, end: 9 });
 
+  const width = window.innerWidth;
+
   useEffect(() => setLastInput(query || ""), [query]);
 
   useEffect(() => {
@@ -56,7 +58,6 @@ export default function SearchContent() {
     return;
   }
 
-  console.log(currentIndexes);
   return (
     <div className="search-content">
       <div className="title">Rezultatele căutării</div>
@@ -101,10 +102,21 @@ export default function SearchContent() {
                     })
                     .map((article) => (
                       <div key={article.link} className="result">
-                        <a href={article.link} target="_blank">
-                          {article.title.slice(0, 80) + "..."}
-                        </a>
-                        <p>{article.description.slice(0, 50) + "..."}</p>
+                        <div className="image-wrapper">
+                          <img src={article.image} alt="poza" />
+                        </div>
+                        <div className="text">
+                          <a href={article.link} target="_blank">
+                            {width >= 1024
+                              ? article.title.slice(0, 100) + "..."
+                              : article.title.slice(0, 80) + "..."}
+                          </a>
+                          <p>
+                            {width >= 1024
+                              ? article.description.slice(0, 200) + "..."
+                              : article.description.slice(0, 50) + "..."}
+                          </p>
+                        </div>
                       </div>
                     ))}
                 </div>
@@ -158,7 +170,11 @@ export default function SearchContent() {
                     onClick={() => {
                       window.scrollTo({ top: 0, behavior: "smooth" });
                       setCurrentIndexes({
-                        start: 10 * Math.floor(filteredArticles.length / 10),
+                        start:
+                          filteredArticles.length % 10 === 0
+                            ? 10 *
+                              (Math.floor(filteredArticles.length / 10) - 1)
+                            : 10 * Math.floor(filteredArticles.length / 10),
                         end: filteredArticles.length - 1,
                       });
                     }}
