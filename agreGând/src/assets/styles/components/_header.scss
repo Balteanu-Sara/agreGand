@@ -161,6 +161,7 @@
 
         button:hover {
           cursor: pointer;
+          text-decoration: underline white;
         }
       }
     }
@@ -378,6 +379,10 @@
 
       .search {
         max-width: 30px;
+      }
+
+      .search:hover {
+        cursor: pointer;
       }
 
       .logos {
