@@ -286,6 +286,12 @@ export default function Header() {
   const width = window.innerWidth;
 
   useEffect(() => {
+    if (toggleSearch) {
+      document.body.classList.add("block-screen");
+    } else document.body.classList.remove("block-screen");
+  }, [toggleSearch]);
+
+  useEffect(() => {
     if (toggleNavBar) {
       setShow("show");
       return;

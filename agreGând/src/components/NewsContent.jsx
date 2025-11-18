@@ -63,6 +63,12 @@ export default function NewsContent() {
   const [show, setShow] = useState(5);
 
   useEffect(() => {
+    if (toggleOptions) {
+      document.body.classList.add("block-screen");
+    } else document.body.classList.remove("block-screen");
+  }, [toggleOptions]);
+
+  useEffect(() => {
     setShow(5);
     setToggleOptions(false);
   }, [source]);
