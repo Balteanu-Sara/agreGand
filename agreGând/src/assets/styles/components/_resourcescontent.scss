@@ -54,3 +54,42 @@
     }
   }
 }
+
+@media (min-width: 1024px) {
+  .resources-content {
+    padding: 1vh 5vw;
+    gap: 1.5em;
+
+    .resource {
+      flex-direction: row;
+      padding: 30px 50px;
+      gap: 1em;
+
+      .image-wrapper {
+        width: 30vw;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      .text {
+        width: 50vw;
+
+        h2 {
+          margin: 0;
+        }
+
+        .description {
+          font-size: 19px;
+          padding: 15px 20px;
+        }
+      }
+    }
+  }
+}
