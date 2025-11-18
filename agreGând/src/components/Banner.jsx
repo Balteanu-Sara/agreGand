@@ -11,7 +11,6 @@ export default function Banner({ image, text, slider, spliter = true }) {
   const { articles, loading } = useContext(DataContext);
 
   const width = window.innerWidth;
-  const height = window.innerHeight;
   const currentUrl = window.location.href;
 
   const settings = {
@@ -46,7 +45,9 @@ export default function Banner({ image, text, slider, spliter = true }) {
         <h3 className="quote">Siguranță în știri și articole </h3>
       </div>
 
-      {currentUrl.endsWith("/") && width >= 1024 ? (
+      {currentUrl.endsWith("/") &&
+      !currentUrl.includes("search") &&
+      width >= 1024 ? (
         <div className="image-wrapper">
           <video autoPlay loop muted>
             <source src={banner_video} type="video/mp4" />
