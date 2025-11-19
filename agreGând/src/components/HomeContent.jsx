@@ -3,6 +3,8 @@ import { DataContext } from "../context/DataProvider.jsx";
 import { useNavigate } from "react-router-dom";
 
 function HomeArticle({ image, title, link, categories }) {
+  const width = window.innerWidth;
+
   return (
     <div className="home-article">
       <div className="image-wrapper">
@@ -10,7 +12,9 @@ function HomeArticle({ image, title, link, categories }) {
       </div>
       <h1>
         <a href={link} target="_blank">
-          {title.slice(0, 100) + "..."}
+          {width >= 1024
+            ? title.slice(0, 80) + "..."
+            : title.slice(0, 100) + "..."}
         </a>
       </h1>
       <hr />

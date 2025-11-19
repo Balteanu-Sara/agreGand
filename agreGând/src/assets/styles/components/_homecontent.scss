@@ -108,3 +108,42 @@
     background-color: var(--gri-deschis);
   }
 }
+
+@media (min-width: 1024px) {
+  .home-content {
+    padding: 0px 5vw;
+
+    .content-section {
+      padding: 5vh 5vw 5vh;
+
+      &-articles {
+        flex-direction: row;
+        gap: 0;
+        justify-content: space-between;
+
+        .home-article {
+          width: 25vw;
+
+          h1 {
+            font-size: 20px;
+            margin: 0;
+            min-height: 20vh;
+          }
+
+          .categories {
+            p {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+
+      button {
+        margin-top: 20px;
+        min-width: 15vw;
+        padding: 5px;
+        // align-self: self-start;
+      }
+    }
+  }
+}
