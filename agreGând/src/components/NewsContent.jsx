@@ -3,10 +3,17 @@ import { ChevronDown, X } from "lucide-react";
 import { DataContext } from "../context/DataProvider";
 import { useNavigate, useParams } from "react-router-dom";
 
-function NewsArticle({ image, title, link, description, categories }) {
+function NewsArticle({
+  image,
+  title,
+  link,
+  description,
+  categories,
+  all = false,
+}) {
   return (
-    <div className="news-article">
-      <div className="image-wrapper">
+    <div className={all ? "news-article all" : "news-article"}>
+      <div className={all ? "image-wrapper all" : "image-wrapper"}>
         <img src={image} alt={title} />
       </div>
       <div className="text">
@@ -38,7 +45,7 @@ function OptionsArea({ options, selected, onClick = false }) {
   }
 
   return (
-    <div className="options-section">
+    <div className={!selected ? "options-section all" : "options-section"}>
       <div className="actual-options">
         {options.map((option, index) => (
           <div
@@ -122,7 +129,7 @@ export default function NewsContent() {
         </>
       )}
       {width >= 1024 && <OptionsArea options={options} selected={source} />}
-      <div className="actual-content">
+      <div className={!source ? "actual-content all" : "actual-content"}>
         {filteredArticles.length < show
           ? filteredArticles.map((article) => (
               <NewsArticle
@@ -132,6 +139,7 @@ export default function NewsContent() {
                 link={article.link}
                 description={article.description}
                 categories={[...article.categories]}
+                all={source ? false : true}
               />
             ))
           : filteredArticles
@@ -143,6 +151,7 @@ export default function NewsContent() {
                   link={article.link}
                   description={article.description}
                   categories={[...article.categories]}
+                  all={source ? false : true}
                 />
               ))
               .slice(0, show)}
