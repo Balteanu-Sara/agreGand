@@ -122,50 +122,55 @@
         }
       }
 
-      h1 {
-        font-family: "arial black", arial-w01-black, sans-serif;
-        font-size: 25px;
-        text-align: start;
-        padding: 15px 20px;
-        margin: auto;
-
-        a {
-          text-decoration: none;
-          cursor: pointer;
-          color: var(--albastru-inchis);
-        }
-      }
-
-      .description {
-        font-size: 20px;
-        font-family: proxima-n-w01-reg, sans-serif;
-        margin: 10px 20px 20px;
-      }
-
-      hr {
-        width: 90%;
-        margin: 0;
-        align-self: center;
-      }
-
-      .categories {
+      .text {
         display: flex;
-        flex-direction: row;
-        align-self: center;
-        padding: 10px 0px;
-        width: 90%;
-        gap: 0.5em;
+        flex-direction: column;
 
-        p {
-          // height: auto;
-          // width: auto;
-          text-align: center;
-          align-self: center;
+        h1 {
+          font-family: "arial black", arial-w01-black, sans-serif;
+          font-size: 25px;
+          text-align: start;
+          padding: 15px 20px;
+          margin: auto;
+
+          a {
+            text-decoration: none;
+            cursor: pointer;
+            color: var(--albastru-inchis);
+          }
+        }
+
+        .description {
+          font-size: 20px;
+          font-family: proxima-n-w01-reg, sans-serif;
+          margin: 10px 20px 20px;
+        }
+
+        hr {
+          width: 90%;
           margin: 0;
-          color: white;
-          background-color: var(--albastru-inchis);
-          border-radius: 10px;
-          padding: 5px;
+          align-self: center;
+        }
+
+        .categories {
+          display: flex;
+          flex-direction: row;
+          align-self: center;
+          padding: 10px 0px;
+          width: 90%;
+          gap: 0.5em;
+
+          p {
+            // height: auto;
+            // width: auto;
+            text-align: center;
+            align-self: center;
+            margin: 0;
+            color: white;
+            background-color: var(--albastru-inchis);
+            border-radius: 10px;
+            padding: 5px;
+          }
         }
       }
     }
@@ -185,5 +190,108 @@
   .show-button:hover {
     cursor: pointer;
     background-color: var(--albastru-inchis);
+  }
+}
+
+@media (min-width: 1024px) {
+  .news-content {
+    padding: 10vh 5vw;
+    background-color: var(--gri-deschis);
+    gap: 2em;
+
+    .options-section {
+      z-index: unset;
+      position: unset;
+      bottom: unset;
+      left: unset;
+      width: 100%;
+      min-height: unset;
+      background-color: unset;
+      font-size: unset;
+      padding-left: 10vw;
+      padding-right: 10vw;
+
+      .actual-options {
+        flex-direction: row;
+        padding: 0px;
+        gap: 2em;
+
+        .selected {
+          background-color: unset;
+          color: var(--albastru-cer);
+        }
+
+        div {
+          padding: 0px;
+          font: normal normal normal 15px "arial black", arial-w01-black,
+            sans-serif;
+        }
+
+        .not-selected:hover {
+          background-color: unset;
+          color: var(--albastru-cer);
+        }
+      }
+    }
+
+    .actual-content {
+      gap: 2em;
+      background-color: white;
+      padding: 3vh 10vw;
+
+      .news-article {
+        flex-direction: row;
+        width: 70vw;
+        border: 1px solid black;
+        gap: 1em;
+
+        .image-wrapper {
+          border-block: unset;
+          width: unset;
+          max-width: 35vw;
+          min-width: 200px;
+          flex-shrink: 0;
+        }
+
+        .text {
+          flex-direction: column;
+          padding: 20px;
+          width: 100%;
+
+          h1 {
+            font-size: 19px;
+            padding: 0px;
+
+            a:hover {
+              color: var(--albastru-cer);
+            }
+          }
+
+          .description {
+            font-size: 17px;
+            margin-left: 0px;
+            margin-right: 0px;
+          }
+
+          hr {
+            width: 100%;
+          }
+
+          .categories {
+            width: 100%;
+
+            p {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+
+    .show-button {
+      //min-height: 3vh;
+      min-width: 15vw;
+      padding: 5px;
+    }
   }
 }

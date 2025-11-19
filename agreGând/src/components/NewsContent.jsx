@@ -9,25 +9,28 @@ function NewsArticle({ image, title, link, description, categories }) {
       <div className="image-wrapper">
         <img src={image} alt={title} />
       </div>
-      <h1>
-        <a href={link} target="_blank">
-          {title}
-        </a>
-      </h1>
-      <div className="description">{description}</div>
-      <hr />
-      <div className="categories">
-        {categories.slice(0, 3).map((cat, index) => (
-          <p key={cat + index}>{cat}</p>
-        ))}
+      <div className="text">
+        <h1>
+          <a href={link} target="_blank">
+            {title}
+          </a>
+        </h1>
+        <div className="description">{description}</div>
+        <hr />
+        <div className="categories">
+          {categories.slice(0, 3).map((cat, index) => (
+            <p key={cat + index}>{cat}</p>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-function OptionsArea({ onClick, options, selected }) {
+function OptionsArea({ options, selected, onClick = false }) {
   const navigate = useNavigate();
   const selectedOption = selected ? selected : "Toate Postările";
+  const width = window.innerWidth;
 
   function changeOption(option) {
     if (option === "Toate Postările") navigate("/news");
@@ -47,11 +50,15 @@ function OptionsArea({ onClick, options, selected }) {
           </div>
         ))}
       </div>
-      <hr />
-      <div onClick={onClick} className="close-options">
-        <X />
-        <div>Închide</div>
-      </div>
+      {width < 1024 && (
+        <>
+          <hr />
+          <div onClick={onClick} className="close-options">
+            <X />
+            <div>Închide</div>
+          </div>{" "}
+        </>
+      )}
     </div>
   );
 }
@@ -63,15 +70,11 @@ export default function NewsContent() {
   const [show, setShow] = useState(5);
 
   useEffect(() => {
-    if (toggleOptions) {
-      document.body.classList.add("block-screen");
-    } else document.body.classList.remove("block-screen");
-  }, [toggleOptions]);
-
-  useEffect(() => {
     setShow(5);
     setToggleOptions(false);
   }, [source]);
+
+  const width = window.innerWidth;
 
   const options = [
     "Toate Postările",
@@ -100,22 +103,25 @@ export default function NewsContent() {
 
   return (
     <div className="news-content">
-      <div className="fake-button">
-        <button onClick={toggleOptionsView}>
-          <span>{options[selectedIndex]}</span>
-          <ChevronDown />
-        </button>
-      </div>
+      {width < 1024 && (
+        <div className="fake-button">
+          <button onClick={toggleOptionsView}>
+            <span>{options[selectedIndex]}</span>
+            <ChevronDown />
+          </button>
+        </div>
+      )}
       {toggleOptions && (
         <>
           <OptionsArea
-            onClick={toggleOptionsView}
             options={options}
             selected={source}
+            onClick={toggleOptionsView}
           />
           <div className="overlay"></div>
         </>
       )}
+      {width >= 1024 && <OptionsArea options={options} selected={source} />}
       <div className="actual-content">
         {filteredArticles.length < show
           ? filteredArticles.map((article) => (
