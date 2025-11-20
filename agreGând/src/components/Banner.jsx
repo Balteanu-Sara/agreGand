@@ -62,7 +62,9 @@ export default function Banner({ image, text, slider, spliter = true }) {
       )}
 
       {spliter && (
-        <div className="breaker">
+        <div
+          className={width >= 1024 && slider ? "breaker wslider" : "breaker"}
+        >
           <div className="simple-text">
             <strong>{text}</strong>
           </div>

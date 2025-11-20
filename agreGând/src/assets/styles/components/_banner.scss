@@ -107,7 +107,12 @@
     }
 
     .breaker {
-      flex-direction: row;
+      padding-left: 50px;
+
+      &.wslider {
+        flex-direction: row;
+        padding-left: 30px;
+      }
 
       .simple-text {
         width: 20vw;
