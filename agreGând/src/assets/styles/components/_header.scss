@@ -96,7 +96,7 @@
       .results-found {
         display: flex;
         flex-direction: column;
-        gap: 1.5em;
+        gap: 1em;
         align-items: baseline;
 
         .actual-results {
@@ -113,7 +113,7 @@
 
             .image-wrapper {
               width: 150px;
-              max-width: 35vw;
+              max-width: 30vw;
               min-width: 100px;
               flex-shrink: 0;
               aspect-ratio: 1;

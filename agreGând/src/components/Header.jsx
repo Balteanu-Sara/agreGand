@@ -168,6 +168,7 @@ function NavBar({ onClick, show }) {
             className={
               "menu-element" + (currentUrl.endsWith("/") ? " selected" : "")
             }
+            onClick={onClick}
           >
             Acasă
           </Link>
