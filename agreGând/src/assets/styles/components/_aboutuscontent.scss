@@ -8,17 +8,21 @@
     padding: 20px;
     color: var(--albastru-scris);
 
-    h1 {
-      margin: 0;
+    .title {
+      h1 {
+        margin: 0;
+      }
     }
 
-    p {
-      font-size: 20px;
-      padding: 0px 5px;
+    .text {
+      p {
+        font-size: 20px;
+        padding: 0px 5px;
 
-      a {
-        text-decoration: none;
-        color: var(--albastru-scris);
+        a {
+          text-decoration: none;
+          color: var(--albastru-scris);
+        }
       }
     }
   }
@@ -29,11 +33,13 @@
     padding: 20px;
     color: var(--albastru-scris);
 
-    h1 {
-      margin: 0;
+    .title {
+      h1 {
+        margin: 0;
+      }
     }
 
-    div {
+    .options {
       display: flex;
       flex-direction: column;
 
@@ -45,6 +51,7 @@
 
         .contact-field {
           display: flex;
+          flex-direction: column;
           gap: 0.5em;
 
           h2 {
@@ -126,6 +133,77 @@
 
         p {
           margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .aboutus-content {
+    padding: 5vh 5vw;
+
+    .purpose {
+      flex-direction: row;
+      padding-left: 15vw;
+      padding-right: 15vw;
+      justify-content: space-between;
+
+      .title {
+        h1 {
+          color: var(--albastru-cer);
+        }
+      }
+
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 40vw;
+
+        p {
+          font-size: 25px;
+          margin: 0;
+        }
+      }
+    }
+
+    .contact {
+      flex-direction: row;
+      padding-left: 5vw;
+      padding-right: 15vw;
+      gap: 3em;
+
+      .title {
+        font-size: 13px;
+        color: var(--albastru-cer);
+        text-align: center;
+      }
+
+      .options {
+        width: 40vw;
+
+        .contact-fields {
+          flex-direction: row;
+          gap: 2em;
+
+          .contact-field {
+            gap: 1em;
+
+            &.border {
+              padding-left: 1.5em;
+              border-left: 1px solid lightgrey;
+            }
+          }
+        }
+
+        .forms {
+          .field {
+            .fake-input {
+              min-width: 40vw;
+              max-width: 40vw;
+            }
+          }
         }
       }
     }

@@ -80,10 +80,14 @@ function Form() {
 }
 
 function Contact() {
+  const width = window.innerWidth;
+
   return (
     <div className="contact">
-      <h1>Contactează-ne pentru mai multe detalii sau colaborări!</h1>
-      <div>
+      <div className="title">
+        <h1>Contactează-ne pentru mai multe detalii sau colaborări!</h1>
+      </div>
+      <div className="options">
         <div className="contact-fields">
           <div className="contact-field">
             <h2>Email:</h2>
@@ -96,7 +100,9 @@ function Contact() {
               office@agregand.ro
             </div>
           </div>
-          <div className="contact-field">
+          <div
+            className={width >= 1024 ? "contact-field border" : "contact-field"}
+          >
             <h2>Rețele de socializare:</h2>
             <div className="data-contact">
               <a href="">
@@ -120,31 +126,36 @@ function Contact() {
 function Purpose() {
   return (
     <div className="purpose">
-      <h1>Scop</h1>
-      <p>
-        Platforma <strong>agreGând</strong> are menirea să reprezinte un spațiu
-        accesibil și bine structurat, care facilitează distribuirea știrilor și
-        articolelor de actualitate, aducând în atenția utilizatorilor subiecte
-        relevante și de interes public. Prin filtrarea, organizarea și
-        prezentarea conținutului într-o manieră clară și intuitivă, platforma
-        ajută utilizatorii să economisească timp și să obțină o imagine de
-        ansamblu echilibrată asupra evenimentelor curente, fără a fi copleșiți
-        de volumul mare de informație disponibil online.{" "}
-      </p>
-      <p>
-        Au fost selecționate cu vigilență surse de încredere, enumerate și
-        descrise{" "}
-        <span style={{ fontStyle: "italic" }}>
-          <Link to="/resources" className="to-resources">
-            aici
-          </Link>
-        </span>
-        , deoarece diversitatea temelor abordate, transparența modului în care
-        acestea sunt prezentate și verificarea informațiilor înainte de
-        publicare reprezintă puncte esențiale pentru noi. În acest fel,{" "}
-        <strong>agreGând</strong> încurajează formarea unei opinii informate,
-        critice și independente.
-      </p>
+      <div className="title">
+        <h1>Scop</h1>
+      </div>
+      <div className="text">
+        <p>
+          Platforma <strong>agreGând</strong> are menirea să reprezinte un
+          spațiu accesibil și bine structurat, care facilitează distribuirea
+          știrilor și articolelor de actualitate, aducând în atenția
+          utilizatorilor subiecte relevante și de interes public. Prin
+          filtrarea, organizarea și prezentarea conținutului într-o manieră
+          clară și intuitivă, platforma ajută utilizatorii să economisească timp
+          și să obțină o imagine de ansamblu echilibrată asupra evenimentelor
+          curente, fără a fi copleșiți de volumul mare de informație disponibil
+          online.{" "}
+        </p>
+        <p>
+          Au fost selecționate cu vigilență surse de încredere, enumerate și
+          descrise{" "}
+          <span style={{ fontStyle: "italic" }}>
+            <Link to="/resources" className="to-resources">
+              aici
+            </Link>
+          </span>
+          , deoarece diversitatea temelor abordate, transparența modului în care
+          acestea sunt prezentate și verificarea informațiilor înainte de
+          publicare reprezintă puncte esențiale pentru noi. În acest fel,{" "}
+          <strong>agreGând</strong> încurajează formarea unei opinii informate,
+          critice și independente.
+        </p>
+      </div>
     </div>
   );
 }
