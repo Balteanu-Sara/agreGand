@@ -36,6 +36,7 @@ export default function Banner({ image, text, slider, spliter = true }) {
   function truncateTitle(title, maxLength = 70) {
     if (width >= 1300) maxLength = 90;
     if (width >= 1700) maxLength = 110;
+    if (width >= 1900) maxLength = 130;
     if (title.length <= maxLength) return title;
     return title.slice(0, maxLength) + "...";
   }

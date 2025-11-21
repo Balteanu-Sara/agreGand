@@ -96,7 +96,7 @@
       .results-found {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 1.5em;
         align-items: baseline;
 
         .actual-results {
@@ -146,7 +146,6 @@
 
         button {
           border: none;
-          margin-top: 20px;
           height: 5vh;
           padding: 10px 16px;
           background-color: var(--albastru-inchis);
@@ -305,6 +304,8 @@
 
       .results-area {
         .results-found {
+          gap: 1em;
+
           .actual-results {
             display: flex;
             flex-direction: row;
@@ -324,6 +325,10 @@
                 font-size: 17px;
               }
             }
+          }
+
+          button {
+            margin-top: 20px;
           }
         }
       }

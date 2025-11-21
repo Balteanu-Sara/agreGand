@@ -131,10 +131,18 @@ function SearchArea({ onClick }) {
                     </div>
                     <div className="text">
                       <div className="title">
-                        {article.title.slice(0, 40) + "..."}
+                        {(width >= 1600
+                          ? article.title.slice(0, 70)
+                          : width >= 1024
+                          ? article.title.slice(0, 55)
+                          : article.title.slice(0, 40)) + "..."}
                       </div>
                       <div className="description">
-                        {article.description.slice(0, 55) + "..."}
+                        {(width >= 1600
+                          ? article.description.slice(0, 95)
+                          : width >= 1024
+                          ? article.description.slice(0, 75)
+                          : article.description.slice(0, 55)) + "..."}
                       </div>
                     </div>
                   </div>
