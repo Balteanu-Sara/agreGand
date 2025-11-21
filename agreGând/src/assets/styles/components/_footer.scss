@@ -17,7 +17,7 @@
     .left-side {
       h1 {
         text-align: center;
-        font: normal normal normal 25px "arial black", arial-w01-black,
+        font: normal normal normal 24px "arial black", arial-w01-black,
           sans-serif;
         margin: 0;
         margin-bottom: 1vh;
@@ -27,35 +27,36 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 3vh 10px;
         gap: 0.7em;
 
         label {
-          font: normal normal normal 23.540000000000003px / 1.4em "arial black",
-            arial-w01-black, sans-serif;
+          font: normal normal normal 20px "arial black", arial-w01-black,
+            sans-serif;
         }
 
         div {
           border-bottom: lightgray 1px solid;
           padding: 8px 12px;
           min-height: 40px;
+
+          input {
+            min-height: 40px;
+            width: 100%;
+            border: none;
+            font: normal normal normal 20px poppins-extralight, poppins,
+              sans-serif;
+            color: lightgray;
+            background-color: var(--albastru-inchis);
+          }
+
+          input:focus {
+            outline: none;
+          }
         }
 
         div:hover {
           border-bottom: 1.5px solid white;
-        }
-
-        input {
-          min-height: 40px;
-          border: none;
-          font: normal normal normal 20px poppins-extralight, poppins,
-            sans-serif;
-          color: lightgray;
-          background-color: var(--albastru-inchis);
-        }
-
-        input:focus {
-          outline: none;
         }
 
         button {
