@@ -112,14 +112,18 @@
       &.wslider {
         flex-direction: row;
         padding-left: 30px;
+        gap: 1.5em;
       }
 
       .simple-text {
-        width: 20vw;
+        max-width: 20vw;
+        width: 18vw;
+        min-width: 15vw;
       }
 
       .slider {
         width: 60vw;
+        height: 4vh;
       }
     }
   }
