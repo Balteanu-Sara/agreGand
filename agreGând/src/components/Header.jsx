@@ -301,12 +301,13 @@ export default function Header() {
       setShowSearchArea("show");
       return;
     }
+
     if (!toggleSearch && showSearchArea === "show") {
       document.body.classList.remove("block-screen");
       setShowSearchArea("close");
       const timeout = setTimeout(() => {
         setShowSearchArea("");
-      }, 300);
+      }, 200);
 
       return () => {
         clearTimeout(timeout);
@@ -321,13 +322,6 @@ export default function Header() {
     }
     if (!toggleNavBar && showNavBar === "show") {
       setShowNavBar("close");
-      const timeout = setTimeout(() => {
-        setShowNavBar("");
-      }, 2000);
-
-      return () => {
-        clearTimeout(timeout);
-      };
     }
   }, [toggleNavBar]);
 
@@ -336,24 +330,15 @@ export default function Header() {
   }
 
   function toggleSearchView() {
-    setToggleSearch(!toggleSearch);
+    setToggleSearch((prev) => !prev);
   }
 
   function toggleNavBarView() {
-    setToggleNavBar(!toggleNavBar);
+    setToggleNavBar((prev) => !prev);
   }
-
-  console.log(toggleSearch);
-  console.log(showSearchArea);
 
   return (
     <div className="header">
-      {/* {toggleSearch && (
-        <>
-          <div className="backdrop"></div>
-          <SearchArea onClick={toggleSearchView} show={showSearchArea} />
-        </>
-      )} */}
       {(toggleSearch || showSearchArea === "close") && (
         <>
           <div className="backdrop"></div>
