@@ -21,16 +21,26 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    transition: ease-in;
     position: fixed;
     z-index: 10;
-    top: 0;
-    left: 0;
     width: 100%;
+    top: 0px;
+    left: 0px;
     max-height: 90vh;
     min-height: 30vh;
-    // height: 100%;
     padding: 40px 20px 30px 40px;
+
+    &.show {
+      animation: openSearchArea;
+      animation-duration: 0.5s;
+      animation-timing-function: ease;
+    }
+
+    &.close {
+      animation: closeSearchArea;
+      animation-duration: 0.3s;
+      animation-timing-function: ease-in-out;
+    }
 
     .search-container {
       display: flex;
@@ -294,10 +304,51 @@
   }
 }
 
+@keyframes openSearchArea {
+  0% {
+    opacity: 0;
+    top: 0px;
+    left: 0px;
+  }
+
+  50% {
+    opacity: 0.3;
+    top: 0px;
+    left: 0px;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0px;
+    left: 0px;
+  }
+}
+
+@keyframes closeSearchArea {
+  0% {
+    opacity: 1;
+    top: 0px;
+    left: 0px;
+  }
+
+  50% {
+    opacity: 0.3;
+    top: 0px;
+    left: 0px;
+  }
+
+  100% {
+    opacity: 0;
+    top: 0px;
+    left: 0px;
+  }
+}
+
 @media (min-width: 1024px) {
   .header {
     padding-right: 5vw;
     padding-left: 0px;
+    min-height: 13vh;
 
     .search-area {
       max-height: 55vh;
@@ -347,7 +398,7 @@
         width: 5vw;
 
         .logo {
-          max-width: 25px;
+          max-width: 30px;
         }
       }
 
@@ -361,7 +412,7 @@
         .menu-option {
           text-decoration: none;
           color: white;
-          font: normal normal normal 18px "arial black", arial-w01-black,
+          font: normal normal normal 20px "arial black", arial-w01-black,
             sans-serif;
 
           &.selected {
@@ -383,7 +434,7 @@
       min-width: 30vw;
 
       .search {
-        max-width: 30px;
+        max-width: 35px;
       }
 
       .search:hover {
@@ -394,10 +445,43 @@
         display: flex;
         flex-direction: row;
         gap: 1em;
+        align-self: center;
 
         a {
           color: white;
           text-decoration: none;
+
+          svg {
+            max-width: 35px;
+            width: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1800px) {
+  .header {
+    .left-side {
+      div {
+        .logo {
+          max-width: 35px;
+        }
+      }
+    }
+
+    .right-side {
+      .search {
+        max-width: 40px;
+      }
+
+      .logos {
+        a {
+          svg {
+            max-width: 40px;
+            width: 40px;
+          }
         }
       }
     }

@@ -59,7 +59,7 @@ function SearchButton({ onClick }) {
   );
 }
 
-function SearchArea({ onClick }) {
+function SearchArea({ onClick, show }) {
   const navigate = useNavigate();
   const { articles } = useContext(DataContext);
   const [loadingFilter, setLoadingFilter] = useState(false);
@@ -97,7 +97,7 @@ function SearchArea({ onClick }) {
   }, [query, articles]);
 
   return (
-    <div className="search-area">
+    <div className={"search-area " + show}>
       <div className="search-container">
         <div className="left-side">
           <Search />
@@ -290,25 +290,39 @@ export default function Header() {
   const navigate = useNavigate();
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleNavBar, setToggleNavBar] = useState(false);
-  const [show, setShow] = useState("");
+  const [showNavBar, setShowNavBar] = useState("");
+  const [showSearchArea, setShowSearchArea] = useState("");
 
   const width = window.innerWidth;
 
   useEffect(() => {
     if (toggleSearch) {
       document.body.classList.add("block-screen");
-    } else document.body.classList.remove("block-screen");
+      setShowSearchArea("show");
+      return;
+    }
+    if (!toggleSearch && showSearchArea === "show") {
+      document.body.classList.remove("block-screen");
+      setShowSearchArea("close");
+      const timeout = setTimeout(() => {
+        setShowSearchArea("");
+      }, 300);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
   }, [toggleSearch]);
 
   useEffect(() => {
     if (toggleNavBar) {
-      setShow("show");
+      setShowNavBar("show");
       return;
     }
-    if (!toggleNavBar && show === "show") {
-      setShow("close");
+    if (!toggleNavBar && showNavBar === "show") {
+      setShowNavBar("close");
       const timeout = setTimeout(() => {
-        setShow("");
+        setShowNavBar("");
       }, 2000);
 
       return () => {
@@ -329,12 +343,21 @@ export default function Header() {
     setToggleNavBar(!toggleNavBar);
   }
 
+  console.log(toggleSearch);
+  console.log(showSearchArea);
+
   return (
     <div className="header">
-      {toggleSearch && (
+      {/* {toggleSearch && (
         <>
           <div className="backdrop"></div>
-          <SearchArea onClick={toggleSearchView} />
+          <SearchArea onClick={toggleSearchView} show={showSearchArea} />
+        </>
+      )} */}
+      {(toggleSearch || showSearchArea === "close") && (
+        <>
+          <div className="backdrop"></div>
+          <SearchArea onClick={toggleSearchView} show={showSearchArea} />
         </>
       )}
       {width < 1024 && (
@@ -346,7 +369,7 @@ export default function Header() {
           <div className="right-side">
             <Menu onClick={toggleNavBarView} className="nav-button" />
           </div>
-          <NavBar onClick={toggleNavBarView} show={show} />
+          <NavBar onClick={toggleNavBarView} show={showNavBar} />
         </>
       )}
       {width >= 1024 && (
