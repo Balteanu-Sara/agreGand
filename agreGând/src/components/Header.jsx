@@ -197,6 +197,7 @@ function NavBar({ onClick, show }) {
             className={
               "menu-element" + (currentUrl.includes("news") ? " selected" : "")
             }
+            onClick={onClick}
           >
             Știri
           </Link>
@@ -208,6 +209,7 @@ function NavBar({ onClick, show }) {
               "menu-element" +
               (currentUrl.includes("resources") ? " selected" : "")
             }
+            onClick={onClick}
           >
             Resurse
           </Link>
@@ -219,6 +221,7 @@ function NavBar({ onClick, show }) {
               "menu-element" +
               (currentUrl.includes("about-us") ? " selected" : "")
             }
+            onClick={onClick}
           >
             Despre noi
           </Link>
