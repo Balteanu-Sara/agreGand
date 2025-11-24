@@ -34,7 +34,7 @@ function NewsArticle({
   );
 }
 
-function OptionsArea({ options, selected, onClick = false }) {
+function OptionsArea({ options, selected, show = "", onClick = false }) {
   const navigate = useNavigate();
   const selectedOption = selected ? selected : "Toate Postările";
   const width = window.innerWidth;
@@ -44,8 +44,15 @@ function OptionsArea({ options, selected, onClick = false }) {
     else navigate(`/news/${option}`);
   }
 
+  console.log(selected);
+
   return (
-    <div className={!selected ? "options-section all" : "options-section"}>
+    <div
+      className={
+        (!selected ? "options-section all " : "options-section ") +
+        (show ? show : "")
+      }
+    >
       <div className="actual-options">
         {options.map((option, index) => (
           <div
@@ -75,11 +82,24 @@ export default function NewsContent() {
   const [toggleOptions, setToggleOptions] = useState(false);
   const { articles } = useContext(DataContext);
   const [show, setShow] = useState(5);
+  const [showOptionsSection, setOptionsSection] = useState("");
 
   useEffect(() => {
     if (toggleOptions) {
       document.body.classList.add("block-screen");
-    } else document.body.classList.remove("block-screen");
+      setOptionsSection("show");
+      return;
+    } else if (!toggleOptions && showOptionsSection === "show") {
+      document.body.classList.remove("block-screen");
+      setOptionsSection("close");
+      const timeout = setTimeout(() => {
+        setOptionsSection("");
+      }, 300);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
   }, [toggleOptions]);
 
   useEffect(() => {
@@ -124,11 +144,12 @@ export default function NewsContent() {
           </button>
         </div>
       )}
-      {toggleOptions && (
+      {(toggleOptions || showOptionsSection === "close") && (
         <>
           <OptionsArea
             options={options}
             selected={source}
+            show={showOptionsSection}
             onClick={toggleOptionsView}
           />
           <div className="overlay"></div>

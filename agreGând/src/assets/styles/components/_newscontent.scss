@@ -45,6 +45,18 @@
     background-color: white;
     font-size: 20px;
 
+    &.show {
+      animation-name: openOptionsSection;
+      animation-duration: 0.3s;
+      animation-timing-function: ease;
+    }
+
+    &.close {
+      animation-name: closeOptionsSection;
+      animation-duration: 0.3s;
+      animation-timing-function: ease;
+    }
+
     .actual-options {
       display: flex;
       flex-direction: column;
@@ -190,6 +202,46 @@
   .show-button:hover {
     cursor: pointer;
     background-color: var(--albastru-inchis);
+  }
+}
+
+@keyframes openOptionsSection {
+  0% {
+    opacity: 0;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  50% {
+    opacity: 0.3;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  100% {
+    opacity: 1;
+    bottom: 0px;
+    left: 0px;
+  }
+}
+
+@keyframes closeOptionsSection {
+  0% {
+    opacity: 1;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  50% {
+    opacity: 0.3;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  100% {
+    opacity: 0;
+    bottom: 0px;
+    left: 0px;
   }
 }
 
