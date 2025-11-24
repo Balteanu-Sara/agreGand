@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { DataContext } from "../context/DataProvider.jsx";
 import { useNavigate } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 function HomeArticle({ image, title, link, categories }) {
   const width = window.innerWidth;
@@ -72,7 +73,17 @@ function HomeSection({ source }) {
 export default function HomeContent() {
   const { loading, error } = useContext(DataContext);
 
-  if (loading) return <div className="other-content">Se încarcă...</div>;
+  if (loading)
+    return (
+      <div className="other-content">
+        <TailSpin
+          color="#2a53c1"
+          width="50"
+          height="50"
+          ariaLabel="tail-spin-loading"
+        />
+      </div>
+    );
   if (error)
     return <div className="other-content">Eroare : {error.message}</div>;
 

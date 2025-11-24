@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { DataContext } from "../context/DataProvider.jsx";
 import { Menu, Search, X, Facebook, Instagram, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 function Logo({ onClick }) {
   return (
@@ -114,7 +115,16 @@ function SearchArea({ onClick, show }) {
       </div>
       <div className="results-area">
         <p>Rezultate</p>
-        {loadingFilter && <div className="loading">Se încarcă...</div>}
+        {loadingFilter && (
+          <div className="loading">
+            <TailSpin
+              color="#172a47"
+              width="50"
+              height="50"
+              ariaLabel="tail-spin-loading"
+            />
+          </div>
+        )}
         {!loadingFilter && !filteredArticles.length && query && (
           <div className="results-not-found">
             Nu s-au găsit rezultate pentru: {query}

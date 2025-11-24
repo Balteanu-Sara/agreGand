@@ -1,6 +1,6 @@
-import { Turtle } from "lucide-react";
 import { DataContext } from "../context/DataProvider.jsx";
 import { useState, useEffect, useContext } from "react";
+import { TailSpin } from "react-loader-spinner";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -79,10 +79,14 @@ export default function Banner({ image, text, slider, spliter = true }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "white",
               }}
             >
-              Se încarcă...
+              <TailSpin
+                color="#ffffff"
+                width="50"
+                height="50"
+                ariaLabel="tail-spin-loading"
+              />
             </div>
           )}
           {slider && recentNews.length > 0 && (
