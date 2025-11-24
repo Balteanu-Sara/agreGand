@@ -103,7 +103,7 @@ function Contact() {
           <div
             className={width >= 1024 ? "contact-field border" : "contact-field"}
           >
-            <h2>Rețele de socializare:</h2>
+            <h2>Rețele sociale:</h2>
             <div className="data-contact">
               <a href="">
                 <Facebook />
