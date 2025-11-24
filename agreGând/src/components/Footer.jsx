@@ -104,12 +104,12 @@ export default function Footer() {
         Copyright © {new Date().getFullYear()} <strong>agreGând</strong> -
         Powered and secured by{" "}
         <a
-          href="https://vercel.com"
+          href="https://www.netlify.com/"
           target="_blank"
           rel="noreferrer"
           className="footer-link"
         >
-          Vercel
+          Netlify
         </a>
       </p>
     </div>
