@@ -137,8 +137,28 @@ export default function NewsContent() {
 
   const filteredArticles =
     selectedIndex === 0
-      ? [...articles]
+      ? recentArticles([...articles])
       : articles.filter((article) => article.source === options[selectedIndex]);
+
+  function recentArticles(obj) {
+    const noDateArticles = obj.filter(
+      (article) => article.source === "PressOne"
+    );
+
+    const copyObj = obj.filter((article) => article.source !== "PressOne");
+    copyObj.sort((a, b) => {
+      const dateA = new Date(a.publishDate);
+      const dateB = new Date(b.publishDate);
+      return dateB - dateA;
+    });
+
+    let index = 5;
+    noDateArticles.forEach((article) => {
+      copyObj.splice(index, 0, article);
+      index += 6;
+    });
+    return copyObj;
+  }
 
   function changeShownArticles() {
     setShow((prev) => prev + 5);
