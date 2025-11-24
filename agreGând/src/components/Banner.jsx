@@ -52,7 +52,7 @@ export default function Banner({ image, text, slider, spliter = true }) {
       !currentUrl.includes("search") &&
       width >= 1024 ? (
         <div className="image-wrapper">
-          <video autoPlay loop muted>
+          <video autoPlay loop muted disablePictureInPicture>
             <source src={banner_video} type="video/mp4" />
           </video>
         </div>
