@@ -146,3 +146,17 @@
     }
   }
 }
+
+@media (min-width: 1600px) {
+  .home-content {
+    .content-section {
+      &-articles {
+        .home-article {
+          h1 {
+            min-height: 15vh;
+          }
+        }
+      }
+    }
+  }
+}

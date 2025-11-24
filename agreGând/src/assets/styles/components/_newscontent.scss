@@ -368,3 +368,22 @@
     }
   }
 }
+
+@media (min-width: 1600px) {
+  .news-content {
+    .actual-content {
+      .news-article {
+        .text {
+          h1 {
+            min-height: 5vh;
+          }
+
+          .description {
+            font-size: 20px;
+            min-height: 10vh;
+          }
+        }
+      }
+    }
+  }
+}

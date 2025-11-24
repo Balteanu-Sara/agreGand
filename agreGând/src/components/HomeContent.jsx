@@ -16,7 +16,9 @@ function HomeArticle({ image, title, link, categories }) {
       </div>
       <h1>
         <a href={link} target="_blank">
-          {width >= 1024
+          {width >= 1600
+            ? title.slice(0, 120)
+            : width >= 1024
             ? title.slice(0, 80) + "..."
             : title.slice(0, 100) + "..."}
         </a>
