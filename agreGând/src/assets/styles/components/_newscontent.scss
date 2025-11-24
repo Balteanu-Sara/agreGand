@@ -166,22 +166,21 @@
 
         .categories {
           display: flex;
-          flex-direction: row;
+          flex-wrap: wrap;
+          overflow: hidden;
           align-self: center;
           padding: 10px 0px;
           width: 90%;
           gap: 0.5em;
 
           p {
-            // height: auto;
-            // width: auto;
             text-align: center;
             align-self: center;
             margin: 0;
             color: white;
             background-color: var(--albastru-inchis);
             border-radius: 10px;
-            padding: 5px;
+            padding: 5px 7px;
           }
         }
       }

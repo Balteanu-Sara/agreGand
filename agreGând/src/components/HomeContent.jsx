@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 function HomeArticle({ image, title, link, categories }) {
   const width = window.innerWidth;
 
+  function formatCategory(category) {
+    return "#" + category.toLowerCase().split(" ").join("-");
+  }
+
   return (
     <div className="home-article">
       <div className="image-wrapper">
@@ -20,7 +24,7 @@ function HomeArticle({ image, title, link, categories }) {
       <hr />
       <div className="categories">
         {categories.slice(0, 3).map((cat, index) => (
-          <p key={cat + index}>{cat}</p>
+          <p key={cat + index}>{formatCategory(cat)}</p>
         ))}
       </div>
     </div>

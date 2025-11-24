@@ -11,6 +11,12 @@ function NewsArticle({
   categories,
   all = false,
 }) {
+  const width = window.innerWidth;
+
+  function formatCategory(category) {
+    return "#" + category.toLowerCase().split(" ").join("-");
+  }
+
   return (
     <div className={all ? "news-article all" : "news-article"}>
       <div className={all ? "image-wrapper all" : "image-wrapper"}>
@@ -25,9 +31,17 @@ function NewsArticle({
         <div className="description">{description}</div>
         <hr />
         <div className="categories">
-          {categories.slice(0, 3).map((cat, index) => (
-            <p key={cat + index}>{cat}</p>
-          ))}
+          {width >= 1600
+            ? categories
+                .slice(0, 4)
+                .map((cat, index) => (
+                  <p key={cat + index}>{formatCategory(cat)}</p>
+                ))
+            : categories
+                .slice(0, 3)
+                .map((cat, index) => (
+                  <p key={cat + index}>{formatCategory(cat)}</p>
+                ))}
         </div>
       </div>
     </div>
