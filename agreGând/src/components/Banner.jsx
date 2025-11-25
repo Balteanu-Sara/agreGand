@@ -23,6 +23,11 @@ export default function Banner({ image, text, slider, spliter = true }) {
     cssEase: "ease",
   };
 
+  if (width > 1024) {
+    settings["swipe"] = false;
+    settings["touchMove"] = false;
+  }
+
   useEffect(() => {
     if (slider === false) return;
     const sortedArticles = [...articles].sort((a, b) => {
