@@ -1,16 +1,63 @@
-# React + Vite
+# Project Title: agreGând - News Aggregator Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+agreGând is a modern Romanian-language news aggregator designed to simplify how users discover and consume news across multiple domains. Instead of jumping between websites, readers can browse the latest articles, filter by categories, and perform fast, intuitive searches, all within a unified interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Recent News: The homepage includes a “Cele mai actuale” (Most recent) section, showcasing the latest articles aggregated across all sources. A dynamic banner or slider helps highlight important updates or featured content.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Search System: users can search through the available articles using keywords. The search engine matches: titles, sources, categories. The results are dynamically loaded, debounced for smoother typing, and reflected directly in the URL ( /search/:query), making searches shareable and bookmarkable.
 
-## Expanding the ESLint configuration
+- Intuitive Navigation: the navigation bar lets users move instantly between pages: Home, News (with sub-pages for each source), Search, Resources, About Us.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Filter by Source: in the News section, users can browse articles grouped by original source. Each news provider has: its own dedicated page, a list of recently published articles, a clean & scrollable layout. This makes it easy to stay updated with a specific publication.
+
+- "See more" Buttons: throughout the app, “Vezi mai multe" buttons offer shortcuts to full article lists or filtered sections, helping users explore beyond previews and summaries.
+
+- Resources & Contact Pages: additional pages such as "Resurse" and "Despre noi establish credibility, provide educational material, and describe the mission behind the platform.
+
+- Responsive Layout: agreGând is designed for seamless use on phones, tablets, and desktops. The navigation menu adapts to mobile screens, ensuring everything remains readable and easy to access.
+
+## Used Tehnologies & Dependencies
+
+- React 18+
+- Vite
+- SCSS/SASS
+- React Router DOM
+- Lucide React
+- React Slick
+- React Loader Spinner
+
+## Getting Started
+
+Follow the steps below to run the project locally:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Balteanu-Sara/agreGand.git
+```
+
+### 2. Navigate into the project folder
+
+```bash
+cd agreGând
+```
+
+### 3. Install dependencies
+
+Make sure you have Node.js installed (recommended version: 18+).
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The app will run at: **http://localhost:5173**
