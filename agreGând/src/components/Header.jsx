@@ -352,10 +352,16 @@ export default function Header() {
 
   return (
     <div className="header">
-      {(toggleSearch || showSearchArea === "close") && (
+      {/* {(toggleSearch || showSearchArea === "close") && (
         <>
           <div className="backdrop"></div>
           <SearchArea onClick={toggleSearchView} show={showSearchArea} />
+        </>
+      )} */}
+      {toggleSearch && (
+        <>
+          <div className="backdrop"></div>
+          <SearchArea onClick={toggleSearchView} />
         </>
       )}
       {width < 1024 && (

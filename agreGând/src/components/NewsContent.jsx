@@ -48,7 +48,7 @@ function NewsArticle({
   );
 }
 
-function OptionsArea({ options, selected, show = "", onClick = false }) {
+function OptionsArea({ options, selected, onClick = false, show = "" }) {
   const navigate = useNavigate();
   const selectedOption = selected ? selected : "Toate Postările";
   const width = window.innerWidth;
@@ -178,12 +178,22 @@ export default function NewsContent() {
           </button>
         </div>
       )}
-      {(toggleOptions || showOptionsSection === "close") && (
+      {/* {(toggleOptions || showOptionsSection === "close") && (
         <>
           <OptionsArea
             options={options}
             selected={source}
             show={showOptionsSection}
+            onClick={toggleOptionsView}
+          />
+          <div className="overlay"></div>
+        </>
+      )} */}
+      {toggleOptions && (
+        <>
+          <OptionsArea
+            options={options}
+            selected={source}
             onClick={toggleOptionsView}
           />
           <div className="overlay"></div>
