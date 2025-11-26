@@ -20,6 +20,8 @@ agreGând is a modern Romanian-language news aggregator designed to simplify how
 
 - Responsive Layout: agreGând is designed for seamless use on phones, tablets, and desktops. The navigation menu adapts to mobile screens, ensuring everything remains readable and easy to access.
 
+## [Demo](https://super-cactus-f34db6.netlify.app/)
+
 ## Used Tehnologies & Dependencies
 
 - React 18+
