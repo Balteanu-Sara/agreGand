@@ -17,24 +17,21 @@ export function useData() {
 
   useEffect(() => {
     async function fetchData() {
-      const allArticles = [];
       try {
-        for (const key in newsSources) {
+        const feedPromises = Object.keys(newsSources).map(async (key) => {
           const response = await fetch(
             `https://corsproxy.io/?${encodeURIComponent(
               newsSources[key].feedUrl
             )}`
           );
+          const text = await response.text();
+          return parseRSSFeed(newsSources[key].name, text);
+        });
 
-          const blob = await response.blob();
-          const feedText = await blob.text();
-          const sourceArticles = parseRSSFeed(newsSources[key].name, feedText);
-          allArticles.push(...sourceArticles);
-        }
-        setArticles(allArticles);
+        const results = await Promise.all(feedPromises);
+        setArticles(results.flat());
       } catch (err) {
-        setError(err);
-        console.error("Error fetching data: ", err);
+        console.error("Error fetching data: " + err);
       } finally {
         setLoading(false);
       }
