@@ -1,10 +1,91 @@
 import { DataContext } from "../context/DataProvider.jsx";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { TailSpin } from "react-loader-spinner";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import banner_video from "../assets/images/video.mp4";
+
+function NewsSlider() {
+  const { articles, loading } = useContext(DataContext);
+  const [slides, setSlides] = useState([{ type: "text" }]);
+  const width = window.innerWidth;
+
+  console.log(loading);
+
+  useEffect(() => {
+    console.log(loading);
+    if (!loading) {
+      console.log(slides);
+
+      const timeout = setTimeout(() => {
+        setSlides((prev) => prev.slice(1));
+      }, 4000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [loading, slides]);
+
+  useEffect(() => {
+    const sortedArticles = [...articles].sort((a, b) => {
+      const dateA = a.publishDate ? new Date(a.publishDate) : new Date(0);
+      const dateB = b.publishDate ? new Date(b.publishDate) : new Date(0);
+      return dateB - dateA;
+    });
+    setSlides((prev) => [...prev, sortedArticles]);
+  }, [articles]);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 5000,
+    cssEase: "ease",
+  };
+
+  if (width > 1024) {
+    settings["swipe"] = false;
+    settings["touchMove"] = false;
+  }
+
+  function truncateTitle(title, maxLength = 70) {
+    if (width >= 1300) maxLength = 90;
+    if (width >= 1700) maxLength = 110;
+    if (width >= 1900) maxLength = 130;
+    if (title.length <= maxLength) return title;
+    return title.slice(0, maxLength) + "...";
+  }
+
+  return (
+    <div className="slider">
+      <Slider {...settings}>
+        {slides.length &&
+          slides.map((slide) => {
+            if (slide.type === "text") {
+              return (
+                <div className="simple-text" key={slide.type}>
+                  <strong>Cele mai actuale știri</strong>
+                </div>
+              );
+            } else {
+              return (
+                <a
+                  href={slide.link}
+                  className="slider-link"
+                  target="_blank"
+                  key={slide.link}
+                >
+                  {truncateTitle(slide.title)}
+                </a>
+              );
+            }
+          })}
+      </Slider>
+    </div>
+  );
+}
 
 export default function Banner({ image, text, slider, spliter = true }) {
   const [recentNews, setRecentNews] = useState([]);
@@ -76,6 +157,8 @@ export default function Banner({ image, text, slider, spliter = true }) {
           <div className="simple-text">
             <strong>{text}</strong>
           </div>
+
+          {/* {currentUrl.endsWith("/") && slider && <NewsSlider />} */}
           {slider && loading && (
             <div
               style={{
