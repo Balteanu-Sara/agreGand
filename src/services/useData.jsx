@@ -20,9 +20,9 @@ export function useData() {
       try {
         const feedPromises = Object.keys(newsSources).map(async (key) => {
           const response = await fetch(
-            `https://corsproxy.io/?${encodeURIComponent(
-              newsSources[key].feedUrl
-            )}`
+            `/.netlify/functions/rss?url=${encodeURIComponent(
+              newsSources[key].feedUrl,
+            )}`,
           );
           const text = await response.text();
           return parseRSSFeed(newsSources[key].name, text);
