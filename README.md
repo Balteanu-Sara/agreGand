@@ -22,7 +22,7 @@ agreGând is a modern Romanian-language news aggregator designed to simplify how
 
 ## [Demo](https://super-cactus-f34db6.netlify.app/)
 
-## Used Tehnologies & Dependencies
+## Used Technologies & Dependencies
 
 - React 18+
 - Vite
@@ -42,13 +42,7 @@ Follow the steps below to run the project locally:
 git clone https://github.com/Balteanu-Sara/agreGand.git
 ```
 
-### 2. Navigate into the project folder
-
-```bash
-cd agreGând
-```
-
-### 3. Install dependencies
+### 2. Install dependencies
 
 Make sure you have Node.js installed (recommended version: 18+).
 
@@ -56,7 +50,7 @@ Make sure you have Node.js installed (recommended version: 18+).
 npm install
 ```
 
-### 4. Start the development server
+### 3. Start the development server
 
 ```bash
 npm run dev
